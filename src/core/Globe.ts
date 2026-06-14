@@ -11,7 +11,8 @@
  */
 
 import * as THREE from 'three';
-import { COLORS, REGION_ID_COLORS } from '../utils/colors';
+import { REGION_ID_COLORS } from '../utils/colors';
+import { CONTINENTS } from '../data/continents';
 import type { ContinentId } from '../data/continents';
 
 // 各大陆的简化多边形边界（[lon, lat] 数组）
@@ -155,10 +156,74 @@ function generateEarthTexture(): THREE.CanvasTexture {
   ctx.lineTo(TEXTURE_WIDTH, TEXTURE_HEIGHT / 2);
   ctx.stroke();
 
+  // 大陆名称标注（中英文）
+  drawContinentLabels(ctx);
+
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 8;
   return tex;
+}
+
+/**
+ * 在地球纹理上绘制各大陆的中英文名称
+ * 使用经纬度→纹理坐标映射，文字会贴附在大陆中心
+ */
+function drawContinentLabels(ctx: CanvasRenderingContext2D) {
+  // 每个大陆的标签配置：中文名、英文名、字体大小、可选偏移
+  const labels: Array<{
+    id: ContinentId;
+    name: string;
+    nameEn: string;
+    fontSize: number;
+    offsetLon?: number;
+    offsetLat?: number;
+  }> = [
+    { id: 'asia', name: '亚洲', nameEn: 'ASIA', fontSize: 64 },
+    { id: 'africa', name: '非洲', nameEn: 'AFRICA', fontSize: 56 },
+    { id: 'europe', name: '欧洲', nameEn: 'EUROPE', fontSize: 44, offsetLat: 4 },
+    { id: 'northAmerica', name: '北美洲', nameEn: 'NORTH AMERICA', fontSize: 52 },
+    { id: 'southAmerica', name: '南美洲', nameEn: 'SOUTH AMERICA', fontSize: 48 },
+    { id: 'oceania', name: '大洋洲', nameEn: 'OCEANIA', fontSize: 42 },
+    { id: 'antarctica', name: '南极洲', nameEn: 'ANTARCTICA', fontSize: 44 }
+  ];
+
+  for (const label of labels) {
+    const meta = CONTINENTS.find((c) => c.id === label.id);
+    if (!meta) continue;
+
+    const lon = meta.centerLon + (label.offsetLon ?? 0);
+    const lat = meta.centerLat + (label.offsetLat ?? 0);
+    const x = ((lon + 180) / 360) * TEXTURE_WIDTH;
+    const y = ((90 - lat) / 180) * TEXTURE_HEIGHT;
+
+    // 印章式背景（淡色圆角矩形）让文字在任何角度都清晰
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // 中文名 - 描边 + 填充，朱红主色
+    ctx.font = `900 ${label.fontSize}px "Noto Serif SC", "SimSun", serif`;
+    // 黑色描边（外发光效果）
+    ctx.lineWidth = Math.max(6, label.fontSize * 0.14);
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)';
+    ctx.lineJoin = 'round';
+    ctx.strokeText(label.name, x, y);
+    // 朱红填充
+    ctx.fillStyle = '#f5f0e8';
+    ctx.fillText(label.name, x, y);
+
+    // 英文名 - 小号，缃色，位于中文下方
+    const enFontSize = Math.max(14, label.fontSize * 0.32);
+    ctx.font = `600 ${enFontSize}px "Noto Serif SC", serif`;
+    ctx.lineWidth = Math.max(2, enFontSize * 0.18);
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+    ctx.strokeText(label.nameEn, x, y + label.fontSize * 0.7);
+    ctx.fillStyle = '#ecaf1e';
+    ctx.fillText(label.nameEn, x, y + label.fontSize * 0.7);
+
+    ctx.restore();
+  }
 }
 
 /**
