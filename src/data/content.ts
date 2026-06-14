@@ -83,7 +83,21 @@ const AFRICA: ContinentContent = {
       location: { lat: 31, lon: -8 } },
     { year: -70_000, era: '更新世晚期', title: '走出非洲',
       description: '约七万年前，智人沿红海南端的"南线"或黎凡特的"北线"走出非洲，扩散至欧亚大陆，开启人类全球化的序幕。',
-      location: { lat: 12, lon: 43 } }
+      location: { lat: 12, lon: 43 } },
+    { year: -3500, era: '青铜时代', title: '埃及与努比亚',
+      description: '尼罗河两岸的古埃及与南方的库施（努比亚）王国形成南北对峙，苏美尔—埃及—印度河—中华四大文明区域雏形。',
+      location: { lat: 18, lon: 34 } },
+    { year: 1885, era: '殖民', title: '柏林会议',
+      description: '欧洲列强在柏林会议瓜分非洲，划定各自势力范围，撒哈拉以南非洲几乎被全部殖民。',
+      location: { lat: 52, lon: 13 } },
+    { year: 1960, era: '独立浪潮', title: '非洲独立年',
+      description: '1960 年有 17 个非洲国家脱离殖民统治独立，是为"非洲年"，标志着殖民体系走向瓦解。',
+      location: { lat: 0, lon: 20 } },
+    { year: 1994, era: '现代', title: '南非种族隔离终结',
+      description: '曼德拉当选南非首位黑人总统，结束了延续近半个世纪的种族隔离制度，是非洲民主化里程碑。',
+      location: { lat: -26, lon: 28 } },
+    { year: 2015, era: '当代', title: '非洲大陆自贸区',
+      description: '非洲 54 国签署《非洲大陆自由贸易区协定》，覆盖 12 亿人口，是世贸组织成立以来最大自贸区。' }
   ]
 };
 
@@ -138,7 +152,24 @@ const ASIA: ContinentContent = {
     { year: -3500, era: '青铜时代', title: '二里头夏都',
       description: '河南偃师二里头遗址被普遍认为是夏代中晚期都城，奠定了"中国"概念的物质基础。',
       artifacts: ['二里头 青铜爵、绿松石龙形器'],
-      location: { lat: 34, lon: 112 } }
+      location: { lat: 34, lon: 112 } },
+    { year: 1206, era: '历史', title: '蒙古帝国',
+      description: '成吉思汗统一蒙古诸部，建立横跨欧亚的大帝国，深刻改变欧亚大陆人口、语言、贸易格局。',
+      location: { lat: 47, lon: 107 } },
+    { year: 1857, era: '近代', title: '印度民族大起义',
+      description: '印度土兵反英大起义爆发，虽被镇压，却点燃了亚洲民族独立运动的火种。',
+      location: { lat: 28, lon: 77 } },
+    { year: 1945, era: '二战', title: '广岛长崎',
+      description: '美国在广岛、长崎投下两枚原子弹，二战终结，亚洲各国相继独立，民族解放运动席卷大陆。',
+      location: { lat: 32, lon: 132 } },
+    { year: 1947, era: '现代', title: '印巴分治',
+      description: '英属印度分治为印度与巴基斯坦两国，结束近两百年的英国殖民统治，伴随大规模人口迁徙。',
+      location: { lat: 28, lon: 77 } },
+    { year: 1978, era: '现代', title: '中国改革开放',
+      description: '邓小平启动"改革开放"，深圳等经济特区设立，亚洲四小龙与中国经济腾飞，40 亿人脱贫。',
+      location: { lat: 22, lon: 114 } },
+    { year: 2020, era: '当代', title: '亚洲崛起',
+      description: '亚洲 GDP 总量首次超越欧美总和，占世界 50% 以上；东盟、中日韩 RCEP 区域合作深化，亚洲重回世界中心。' }
   ]
 };
 
@@ -194,7 +225,28 @@ const EUROPE: ContinentContent = {
       description: '英国索尔兹伯里平原的巨石阵(Stonehenge)开始建造，标志欧洲进入青铜时代，也是人类天文学最早的纪念碑。',
       image: '/generated/stonehenge_001.jpg',
       artifacts: ['巨石阵'],
-      location: { lat: 51, lon: -2 } }
+      location: { lat: 51, lon: -2 } },
+    { year: 1492, era: '近代', title: '地理大发现',
+      description: '哥伦布抵达美洲，开启欧洲大航海时代；随后麦哲伦、达伽马、迪亚士等环航全球，欧洲成为世界中心。',
+      location: { lat: 37, lon: -76 } },
+    { year: 1815, era: '近代', title: '维也纳体系',
+      description: '拿破仑在滑铁卢战败，维也纳会议重建欧洲秩序，奠定"欧洲协调"百年和平。',
+      location: { lat: 48, lon: 16 } },
+    { year: 1914, era: '现代', title: '一战爆发',
+      description: '萨拉热窝事件引爆第一次世界大战，欧洲各帝国同室操戈，奥斯曼、奥匈、俄罗斯、德意志四大帝国相继崩溃。',
+      location: { lat: 44, lon: 18 } },
+    { year: 1945, era: '二战', title: '欧洲废墟',
+      description: '二战结束，欧洲满目疮痍；丘吉尔发表"铁幕演说"，冷战以欧洲前线为开端，分裂为东西两大阵营。',
+      location: { lat: 38, lon: -97 } },
+    { year: 1957, era: '现代', title: '欧共体成立',
+      description: '法德等六国签订《罗马条约》成立欧洲经济共同体，结束百年世仇，欧洲走向一体化。',
+      location: { lat: 50, lon: 4 } },
+    { year: 1991, era: '现代', title: '苏联解体',
+      description: '苏联与南斯拉夫相继解体，欧洲版图重组，加入欧盟、北约的国家迅速扩展，"新欧洲"诞生。',
+      location: { lat: 55, lon: 37 } },
+    { year: 2020, era: '当代', title: '欧洲绿色协议',
+      description: '欧盟发布"绿色协议"，2050 年实现碳中和，引领全球应对气候变化；同时 Brexit、英国脱欧。',
+      location: { lat: 50, lon: 4 } }
   ]
 };
 
@@ -244,7 +296,27 @@ const NORTH_AMERICA: ContinentContent = {
     { year: -1500, era: '密西西比期', title: '卡霍基亚',
       description: '密西西比河下游的卡霍基亚土墩群见证北美最大史前城市，1200 年前鼎盛期人口近两万。',
       artifacts: ['卡霍基亚 Monk\'s Mound'],
-      location: { lat: 38, lon: -90 } }
+      location: { lat: 38, lon: -90 } },
+    { year: 1607, era: '殖民', title: '詹姆斯敦',
+      description: '英国在弗吉尼亚建立第一个永久北美殖民地詹姆斯敦，开启英属北美殖民史。',
+      location: { lat: 37, lon: -77 } },
+    { year: 1776, era: '近代', title: '独立宣言',
+      description: '杰斐逊起草《独立宣言》，"人人生而平等"，美国独立战争开始，奠定北美新秩序。',
+      location: { lat: 40, lon: -74 } },
+    { year: 1865, era: '近代', title: '南北战争终结',
+      description: '南北战争结束，奴隶制废除，联邦巩固，美国开始进入工业化时代。',
+      location: { lat: 38, lon: -77 } },
+    { year: 1945, era: '现代', title: '超级大国',
+      description: '二战后美国成为超级大国，主导布雷顿森林体系、联合国、北约，开启冷战。',
+      location: { lat: 38, lon: -77 } },
+    { year: 1969, era: '现代', title: '阿波罗登月',
+      description: '阿姆斯特朗踏上月球，"人类的一大步"，美国赢得太空竞赛。',
+      location: { lat: 28, lon: -80 } },
+    { year: 1994, era: '现代', title: 'NAFTA',
+      description: '美、加、墨签订北美自由贸易区协定，区域经济一体化深刻改变北美格局。',
+      location: { lat: 24, lon: -100 } },
+    { year: 2020, era: '当代', title: '气候新政',
+      description: '美国重返《巴黎协定》，加拿大承诺 2050 碳中和；北美成为全球气候行动的关键力量之一。' }
   ]
 };
 
@@ -291,7 +363,27 @@ const SOUTH_AMERICA: ContinentContent = {
     { year: -1500, era: '历史时期', title: '印加帝国',
       description: '印加人以库斯科为中心，建立起从厄瓜多尔到智利的庞大帝国，修建马丘比丘、太阳节(Inti Raymi)。',
       image: '/generated/inca_001.jpg',
-      location: { lat: -13, lon: -72 } }
+      location: { lat: -13, lon: -72 } },
+    { year: 1532, era: '殖民', title: '皮萨罗征服',
+      description: '西班牙征服者皮萨罗在卡哈马卡俘获印加皇帝阿塔瓦尔帕，勒索满屋黄金后将其处死，印加帝国灭亡。',
+      location: { lat: -7, lon: -78 } },
+    { year: 1810, era: '近代', title: '独立战争',
+      description: '圣马丁与玻利瓦尔领导拉美独立战争，1810-1825 年间西属、葡属美洲相继独立，南美多国诞生。',
+      location: { lat: -34, lon: -58 } },
+    { year: 1889, era: '近代', title: '巴西共和国',
+      description: '丰塞卡将军发动政变，巴西帝国终结，巴西合众国（后改为联邦共和国）成立。',
+      location: { lat: -22, lon: -43 } },
+    { year: 1947, era: '现代', title: '庇隆主义',
+      description: '胡安·庇隆第三次当选阿根廷总统，"庇隆主义"成为拉美政治重要流派，影响至今。',
+      location: { lat: -34, lon: -58 } },
+    { year: 1978, era: '现代', title: '人权法庭',
+      description: '美洲人权法院成立（《圣何塞公约》），美洲大陆人权保障进入新阶段。',
+      location: { lat: 9, lon: -79 } },
+    { year: 2014, era: '当代', title: '世界杯与金砖',
+      description: '巴西举办世界杯，金砖国家开发银行在上海签约成立，南美国家在全球治理中话语权增强。' },
+    { year: 2024, era: '当代', title: '亚马逊峰会',
+      description: '亚马逊雨林八国首脑峰会召开，承诺 2030 前终止毁林，亚马逊保护进入跨国合作新阶段。',
+      location: { lat: -3, lon: -60 } }
   ]
 };
 
@@ -337,7 +429,28 @@ const OCEANIA: ContinentContent = {
       location: { lat: -21, lon: -159 } },
     { year: -800, era: '全新世', title: '毛利人登陆',
       description: '东波利尼西亚航海者抵达新西兰，发展出独特的毛利文化，至今保留 Haka 战舞、Wharenui 议事堂。',
-      location: { lat: -41, lon: 174 } }
+      location: { lat: -41, lon: 174 } },
+    { year: 1788, era: '殖民', title: '澳大利亚殖民',
+      description: '英国"第一舰队"在悉尼杰克逊港登陆，澳大利亚正式成为英国殖民地，开启"流放大陆"的历史。',
+      location: { lat: -34, lon: 151 } },
+    { year: 1854, era: '近代', title: '尤里卡起义',
+      description: '澳大利亚金矿区矿工在尤里卡举行武装起义，标志澳洲民主运动兴起，奠定现代选举与劳工权利。',
+      location: { lat: -37, lon: 144 } },
+    { year: 1901, era: '近代', title: '澳大利亚联邦',
+      description: '澳大利亚六个殖民地联合为澳大利亚联邦，成为英联邦自治领。',
+      location: { lat: -35, lon: 149 } },
+    { year: 1972, era: '现代', title: '澳洲民族认同',
+      description: '惠特拉姆政府推动"白澳政策"终结，承认土著澳洲公民身份，澳大利亚走向多元文化。',
+      location: { lat: -35, lon: 149 } },
+    { year: 1992, era: '现代', title: 'Mabo 案',
+      description: '澳大利亚高等法院 Mabo v Queensland 案承认土著对土地的传统权利，颠覆"无主地"概念。',
+      location: { lat: -18, lon: 146 } },
+    { year: 2008, era: '现代', title: '陆克文道歉',
+      description: '陆克文总理代表政府对"被偷走的一代"正式道歉，开启土著和解进程。',
+      location: { lat: -35, lon: 149 } },
+    { year: 2020, era: '当代', title: '丛林大火',
+      description: '澳大利亚"黑色夏季"丛林大火延烧 18 万平方公里，30 亿动物死亡或流离失所，敲响气候警钟。',
+      location: { lat: -33, lon: 150 } }
   ]
 };
 
@@ -384,7 +497,27 @@ const ANTARCTICA: ContinentContent = {
       location: { lat: -79, lon: 169 } },
     { year: -1959, era: '现代', title: '南极条约签订',
       description: '12 国签订《南极条约》，冻结一切领土主张，将南极洲永久保留为"和平与科学"的圣地。',
-      location: { lat: -75, lon: 123 } }
+      location: { lat: -75, lon: 123 } },
+    { year: 1989, era: '现代', title: '《马德里议定书》',
+      description: '《马德里议定书》将南极定为"自然保护区"，禁止一切矿产活动，强化南极环境保护。',
+      location: { lat: -75, lon: 0 } },
+    { year: 1991, era: '现代', title: '冰芯 800 ka',
+      description: '欧洲冰芯钻探项目（EPICA）从南极冰盖钻出 80 万年冰芯，重建 8 个冰期—间冰期循环，重塑古气候学。',
+      location: { lat: -75, lon: 123 } },
+    { year: 1996, era: '现代', title: '火星陨石 ALH84001',
+      description: '在南极冰原上发现的火星陨石 ALH84001 一度被宣称包含生命迹象，激发对地外生命的持续探索。',
+      location: { lat: -77, lon: 162 } },
+    { year: 2004, era: '现代', title: '思韦茨冰川',
+      description: 'NASA 卫星发现南极思韦茨冰川（"末日冰川"）底部融化加速，是海平面上升的关键警示信号。',
+      location: { lat: -75, lon: -105 } },
+    { year: 2014, era: '现代', title: '沃斯托克湖钻探',
+      description: '俄罗斯科考队完成对南极冰下 3769 米深湖——沃斯托克湖的钻探，揭示 1500 万年前地球生命。',
+      location: { lat: -77, lon: 106 } },
+    { year: 2020, era: '当代', title: '冰盖加速融化',
+      description: '南极冰盖年均净损失约 1500 亿吨，全球海平面上升速率创纪录。',
+      location: { lat: -85, lon: 0 } },
+    { year: 2024, era: '当代', title: '企鹅繁殖危机',
+      description: '南极帝企鹅因海冰减少面临严重繁殖危机，被列入美国《濒危物种法》保护。' }
   ]
 };
 
