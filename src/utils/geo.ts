@@ -34,11 +34,15 @@ export function formatYear(year: number): string {
   if (year === 0) return '公元元年';
   if (year > 0) return `公元 ${year} 年`;
   const y = Math.abs(year);
-  if (y >= 1_000_000_000) return `约 ${(y / 1_000_000_000).toFixed(2)} 亿年前`;
-  if (y >= 100_000_000) return `约 ${(y / 100_000_000).toFixed(1)} 亿年前`;
+  // 十亿级（10^9）—— 1 亿 = 10^8，故除以 10^8 得「亿年前」
+  if (y >= 100_000_000) return `约 ${(y / 100_000_000).toFixed(2)} 亿年前`;
+  // 千万级（10^7）
   if (y >= 10_000_000) return `约 ${(y / 10_000_000).toFixed(1)} 千万年前`;
+  // 百万级（10^6）
   if (y >= 1_000_000) return `约 ${(y / 1_000_000).toFixed(2)} 百万年前`;
+  // 十万级（10^5）
   if (y >= 100_000) return `约 ${(y / 10_000).toFixed(1)} 万年前`;
+  // 万级（10^4）
   if (y >= 10_000) return `约 ${(y / 10_000).toFixed(1)} 万年前`;
   if (y >= 1000) return `约 ${(y / 1000).toFixed(1)} 千年前`;
   return `公元前 ${y} 年`;

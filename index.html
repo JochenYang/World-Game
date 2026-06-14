@@ -50,7 +50,15 @@
             <span class="hud-top__seal">源</span>
             <span class="hud-top__title">寰宇溯源</span>
           </div>
-          <div id="hud-region" class="hud-top__region">点击大陆以观其详</div>
+          <div class="hud-top__right">
+            <!-- 内容分类切换器 -->
+            <nav class="view-switcher" id="view-switcher" aria-label="内容分类">
+              <button class="view-switcher__btn is-active" data-view="continent" type="button">大陆溯源</button>
+              <button class="view-switcher__btn" data-view="chronicle" type="button">地球编年</button>
+              <button class="view-switcher__btn" data-view="country" type="button">列国史</button>
+            </nav>
+            <div id="hud-region" class="hud-top__region">点击大陆以观其详</div>
+          </div>
         </header>
 
         <!-- 大陆提示卡 -->
@@ -72,7 +80,7 @@
             <ol id="timeline" class="timeline"></ol>
           </div>
           <div class="scroll-panel__roller scroll-panel__roller--bottom"></div>
-          <button id="close-scroll" class="scroll-panel__close" type="button">
+          <button id="close-scroll" class="scroll-panel__close" type="button" aria-label="合卷">
             <span>合卷</span>
           </button>
         </aside>

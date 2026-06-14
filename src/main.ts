@@ -3,6 +3,7 @@
  */
 
 import * as THREE from 'three';
+import gsap from 'gsap';
 import './styles/main.css';
 
 import { createRenderer } from './core/Renderer';
@@ -15,6 +16,7 @@ import { ScrollPanel } from './ui/ScrollPanel';
 import { RegionTooltip, RegionHud } from './ui/Tooltip';
 import { CONTINENTS } from './data/continents';
 import type { ContinentId } from './data/continents';
+import type { ContentView } from './data/types';
 
 async function bootstrap() {
   const canvas = document.getElementById('globe-canvas') as HTMLCanvasElement;
@@ -93,15 +95,77 @@ async function bootstrap() {
   titleScreen.setOnStart(() => {
     // 进入主舞台时让相机略微拉近
     controller.resetView(1.4);
+    // 默认为「大陆溯源」视图：停止自转，便于用户点击大陆
+    globe.setAutoRotate(false);
   });
 
   // 卷轴关闭后复位
   scrollPanel.setOnClose(() => {
     hud.set(null);
-    controller.resetView(1.2);
+    // 仅在大陆溯源/列国史视图下复位相机；编年史视图保持自转
+    if (currentView !== 'chronicle') {
+      controller.resetView(1.2);
+    }
   });
 
-  // 9. 交互：tap（点击）→ 大陆识别 → 聚焦 + 打开卷轴
+  // 文明卡片点击 → 打开该国历史
+  scrollPanel.setOnCountrySelect((countryId) => {
+    scrollPanel.openCountry(countryId);
+  });
+
+  // 9. 内容分类切换器
+  let currentView: ContentView = 'continent';
+  const switcher = document.getElementById('view-switcher');
+  const switcherBtns = switcher
+    ? Array.from(switcher.querySelectorAll<HTMLButtonElement>('.view-switcher__btn'))
+    : [];
+
+  function setActiveView(view: ContentView) {
+    currentView = view;
+    switcherBtns.forEach((b) => {
+      b.classList.toggle('is-active', b.dataset.view === view);
+    });
+    // 更新 HUD 提示
+    const regionEl = document.getElementById('hud-region');
+    if (regionEl) {
+      if (view === 'chronicle') {
+        regionEl.textContent = '地球编年 · 全景时空';
+      } else if (view === 'country') {
+        regionEl.textContent = '点击大陆 · 览其诸国';
+      } else {
+        regionEl.textContent = '点击大陆 · 观其溯源';
+      }
+    }
+  }
+
+  switcherBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.view as ContentView | undefined;
+      if (!view || view === currentView) return;
+      setActiveView(view);
+
+      // 切换视图时，先关闭现有卷轴
+      if (scrollPanel.isOpen()) {
+        scrollPanel.close();
+      }
+      hud.set(null);
+
+      if (view === 'chronicle') {
+        // 编年史：自动展开，地球自转作背景（无需用户点击大陆）
+        globe.setAutoRotate(true);
+        controller.resetView(1.2);
+        gsap.delayedCall(0.15, () => scrollPanel.openChronicle());
+      } else {
+        // 大陆溯源 / 列国史：停止自转，便于用户稳定点击大陆
+        // 若开启自转，picker 在点击瞬间可能命中海洋，导致 onTap 直接 return，
+        // 面板永远打不开（即用户感知的「无内容」）。
+        globe.setAutoRotate(false);
+        controller.resetView(1.2);
+      }
+    });
+  });
+
+  // 10. 交互：tap（点击）→ 大陆识别 → 根据 currentView 路由
   let currentHover: ContinentId | null = null;
   controller.setOnTap((x, y) => {
     const id = picker.pick(x, y);
@@ -109,12 +173,24 @@ async function bootstrap() {
     const c = CONTINENTS.find((c) => c.id === id);
     if (!c) return;
 
+    if (currentView === 'chronicle') {
+      // 编年史视图：点击大陆仍聚焦，但不切换内容（保持全球编年）
+      globe.setAutoRotate(false);
+      controller.focusTo(c.centerLat, c.centerLon, 5, 1.6);
+      return;
+    }
+
     // 暂停自转，相机聚焦
     globe.setAutoRotate(false);
     controller.focusTo(c.centerLat, c.centerLon, 5, 1.6);
-    scrollPanel.open(id);
     hud.set(id);
     tooltip.hide();
+
+    if (currentView === 'country') {
+      scrollPanel.openContinentCountries(id);
+    } else {
+      scrollPanel.openContinent(id);
+    }
   });
 
   // 悬停检测（移动指针）
@@ -142,7 +218,7 @@ async function bootstrap() {
     canvas.classList.remove('is-hovering');
   });
 
-  // 10. 渲染循环
+  // 11. 渲染循环
   const clock = new THREE.Clock();
   let frameId = 0;
 
