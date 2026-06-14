@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>全球人类起源史 · 寰宇溯源</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700;900&family=ZCOOL+XiaoWei&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 启动封面 -->
+      <section id="title-screen" class="title-screen">
+        <div class="title-screen__bg"></div>
+        <div class="title-screen__inner">
+          <div class="title-screen__seal">
+            <span>溯源</span>
+          </div>
+          <h1 class="title-screen__title">
+            <span class="title-screen__title-main">寰宇溯源</span>
+            <span class="title-screen__title-sub">地球生命与人类起源史</span>
+          </h1>
+          <p class="title-screen__desc">
+            七大洲 · 四十亿年 · 从太古到现代
+          </p>
+          <p class="title-screen__hint">
+            含冥古宙 · 太古宙 · 寒武纪 · 侏罗纪 · 白垩纪 · 冰河时代
+          </p>
+          <p class="title-screen__hint">拖动旋转 · 滚轮缩放 · 点击大陆</p>
+          <button id="start-btn" class="seal-btn" type="button">
+            <span>启卷</span>
+          </button>
+          <div class="title-screen__byline">— 谨以水墨，敬天地众生 —</div>
+        </div>
+      </section>
+
+      <!-- 主舞台 -->
+      <main id="stage" class="stage" aria-hidden="true">
+        <canvas id="globe-canvas"></canvas>
+
+        <!-- 顶栏 -->
+        <header class="hud-top">
+          <div class="hud-top__brand">
+            <span class="hud-top__seal">源</span>
+            <span class="hud-top__title">寰宇溯源</span>
+          </div>
+          <div id="hud-region" class="hud-top__region">点击大陆以观其详</div>
+        </header>
+
+        <!-- 大陆提示卡 -->
+        <div id="region-tooltip" class="region-tooltip" hidden></div>
+
+        <!-- 卷轴面板 -->
+        <aside id="scroll-panel" class="scroll-panel" aria-hidden="true">
+          <div class="scroll-panel__roller scroll-panel__roller--top"></div>
+          <div class="scroll-panel__body">
+            <div class="scroll-panel__head">
+              <span id="scroll-stamp" class="scroll-panel__stamp">印</span>
+              <h2 id="scroll-title" class="scroll-panel__title">亚洲</h2>
+              <p id="scroll-subtitle" class="scroll-panel__subtitle">Asia</p>
+            </div>
+            <p id="scroll-overview" class="scroll-panel__overview"></p>
+            <div class="scroll-panel__divider">
+              <span>史前纪要</span>
+            </div>
+            <ol id="timeline" class="timeline"></ol>
+          </div>
+          <div class="scroll-panel__roller scroll-panel__roller--bottom"></div>
+          <button id="close-scroll" class="scroll-panel__close" type="button">
+            <span>合卷</span>
+          </button>
+        </aside>
+
+        <!-- 底部水印 -->
+        <footer class="hud-bottom">
+          <span>水墨地球 · WebGPU 渲染</span>
+          <span id="render-mode">检测中…</span>
+        </footer>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
