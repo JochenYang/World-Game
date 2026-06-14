@@ -2,7 +2,7 @@
  * 世界各国历史 — 主要文明/国家编年
  *
  * 按大陆分组，覆盖人类文明史的代表性国家/文明。
- * 每个文明含 5-8 条关键事件，按时间顺序排列。
+ * 每个文明含 9-12 条关键事件，按时间顺序排列。
  */
 
 import type { ContinentId } from './continents';
@@ -42,6 +42,9 @@ export const COUNTRIES: CountryHistory[] = [
         description: '商王武丁时期的甲骨文，是中国最早的成熟文字，刻于龟甲兽骨用于占卜，奠定了汉字系统的根基。',
         artifacts: ['殷墟甲骨文'],
         location: { lat: 36, lon: 114 } },
+      { year: -1046, era: '西周', title: '分封制',
+        description: '周武王灭商，分封诸侯，宗法制度与礼乐文明奠定此后三千年政治文化底色。',
+        location: { lat: 34, lon: 108 } },
       { year: -551, era: '春秋', title: '孔子诞生',
         description: '孔子创立儒家学派，倡导「仁」「礼」，其思想深刻影响东亚两千余年。同期老子、墨子、庄子等百家争鸣。',
         location: { lat: 35, lon: 117 } },
@@ -49,15 +52,42 @@ export const COUNTRIES: CountryHistory[] = [
         description: '秦始皇嬴政灭六国，建立中国第一个中央集权大一统帝国，统一文字、度量衡、货币，修筑万里长城。',
         artifacts: ['秦始皇陵兵马俑'],
         location: { lat: 34, lon: 109 } },
+      { year: -119, era: '西汉', title: '张骞通西域',
+        description: '汉武帝派张骞两次出使西域，开辟横贯欧亚的「丝绸之路」，东西方文明首次大规模交流。',
+        location: { lat: 41, lon: 84 } },
+      { year: 105, era: '东汉', title: '蔡伦造纸',
+        description: '东汉宦官蔡伦改进造纸术，以树皮、麻头、破布为原料，造出「蔡侯纸」，深刻改变世界信息传播史。',
+        artifacts: ['敦煌悬泉置纸残片'] },
       { year: 618, era: '唐', title: '盛唐气象',
         description: '唐朝长安成为世界最大都市，丝绸之路繁盛，佛教、诗歌、艺术登峰造极，万国来朝。',
         location: { lat: 34, lon: 109 } },
+      { year: 868, era: '唐', title: '金刚经雕版',
+        description: '威恩斯坦发现的《金刚经》雕版印刷品是现存最早有确切日期的印刷品（公元 868 年），领先欧洲数百年。',
+        artifacts: ['敦煌藏经洞《金刚经》'] },
+      { year: 1044, era: '北宋', title: '毕昇活字',
+        description: '北宋毕昇发明活字印刷术，比古登堡早四百年，是中华四大发明之一。',
+        artifacts: ['泥活字复原模型'] },
+      { year: 1088, era: '北宋', title: '沈括《梦溪笔谈》',
+        description: '沈括晚年著作《梦溪笔谈》涵盖天文、数学、地理、物理等多学科，被誉为「中国科学史上的坐标」。',
+        artifacts: ['《梦溪笔谈》'] },
       { year: 1271, era: '元', title: '忽必烈建元',
         description: '蒙古铁骑横扫欧亚，忽必烈建立元朝，马可·波罗游记让西方神往东方的富庶。',
         location: { lat: 40, lon: 116 } },
+      { year: 1405, era: '明', title: '郑和下西洋',
+        description: '明成祖派遣郑和率 200 余艘宝船七下西洋，远抵东非麻林地，是人类大航海时代前最大规模的远洋航行。',
+        location: { lat: -2, lon: 41 } },
       { year: 1421, era: '明', title: '迁都北京',
-        description: '明成祖朱棣迁都北京，营建紫禁城。此前郑和七下西洋，远达非洲东岸。',
+        description: '明成祖朱棣迁都北京，营建紫禁城，成为明清两代皇家宫殿，至今仍是世界最大木构建筑群。',
         artifacts: ['紫禁城'],
+        location: { lat: 39, lon: 116 } },
+      { year: 1839, era: '清', title: '虎门销烟',
+        description: '林则徐在广东虎门海滩当众销毁鸦片 237 万斤，是近代中国反抗殖民主义的标志性事件。',
+        location: { lat: 22, lon: 113 } },
+      { year: 1911, era: '近代', title: '辛亥革命',
+        description: '武昌起义爆发，辛亥革命推翻延续两千余年的帝制，建立中华民国，亚洲第一个民主共和国。',
+        location: { lat: 30, lon: 114 } },
+      { year: 1949, era: '现代', title: '中华人民共和国',
+        description: '毛泽东在北京天安门城楼宣告中华人民共和国成立，开启中华民族伟大复兴的新纪元。',
         location: { lat: 39, lon: 116 } }
     ]
   },
@@ -69,7 +99,7 @@ export const COUNTRIES: CountryHistory[] = [
     continent: 'asia',
     startYear: -2500,
     region: '南亚 · 印度河流域与恒河流域',
-    overview: '从印度河谷的摩亨佐-达罗，到吠陀时代、孔雀帝国、笈多黄金时代，印度孕育了佛教、印度教、阿拉伯数字、瑜伽等影响世界的思想与发明。',
+    overview: '从印度河谷的摩亨佐-达罗，到吠陀时代、孔雀帝国、笈多黄金时代、印度教与伊斯兰文明交融，印度孕育了佛教、印度教、阿拉伯数字、瑜伽等影响世界的思想与发明。',
     timeline: [
       { year: -2500, era: '印度河文明', title: '摩亨佐-达罗',
         description: '印度河谷出现高度城市规划的青铜文明，砖砌街道、下水道、公共浴池，规模与组织令人惊叹。',
@@ -85,10 +115,22 @@ export const COUNTRIES: CountryHistory[] = [
         location: { lat: 25, lon: 85 } },
       { year: 320, era: '笈多王朝', title: '黄金时代',
         description: '笈多王朝时期，印度数学家发明「零」的概念，阿拉伯数字体系成型；文学、艺术繁荣。' },
+      { year: 1206, era: '德里苏丹', title: '伊斯兰化',
+        description: '库特布丁·艾伯克建立德里苏丹国，印度进入伊斯兰化时期，伊斯兰建筑、波斯文化深度融合。',
+        location: { lat: 28, lon: 77 } },
       { year: 1526, era: '莫卧儿', title: '莫卧儿帝国',
-        description: '巴布尔建立莫卧儿帝国，沙贾汗为爱妻修建泰姬陵，融合波斯与印度艺术。',
+        description: '巴布尔建立莫卧儿帝国，沙贾汗为爱妻修建泰姬陵，融合波斯与印度艺术，是伊斯兰建筑巅峰。',
         artifacts: ['泰姬陵'],
-        location: { lat: 27, lon: 78 } }
+        location: { lat: 27, lon: 78 } },
+      { year: 1857, era: '殖民', title: '民族大起义',
+        description: '印度土兵反英大起义爆发，虽被镇压，却点燃了印度民族独立运动的火种。',
+        location: { lat: 28, lon: 77 } },
+      { year: 1919, era: '独立运动', title: '阿姆利则惨案',
+        description: '英军在阿姆利则金庙广场对和平集会群众开枪，酿成「贾利安瓦拉巴格大屠杀」，震动世界。',
+        location: { lat: 31, lon: 75 } },
+      { year: 1947, era: '现代', title: '印巴分治',
+        description: '甘地领导的非暴力不合作运动终获成效，印度与巴基斯坦分别独立，结束英国近两百年的殖民统治。',
+        location: { lat: 28, lon: 77 } }
     ]
   },
   {
@@ -113,8 +155,18 @@ export const COUNTRIES: CountryHistory[] = [
         description: '萨珊王朝复兴波斯传统，以琐罗亚斯德教为国教，与罗马帝国、拜占庭长期对峙。' },
       { year: 637, era: '伊斯兰化', title: '阿拉伯征服',
         description: '阿拉伯帝国击败萨珊，波斯逐步伊斯兰化，但保留波斯语言与文化。' },
+      { year: 1051, era: '塞尔柱', title: '塞尔柱帝国',
+        description: '塞尔柱突厥人建立的帝国从伊朗高原扩展到小亚细亚，与拜占庭、十字军多方角逐。' },
+      { year: 1258, era: '蒙古', title: '巴格达陷落',
+        description: '蒙古旭烈兀攻陷巴格达，末代哈里发被裹在地毯里被马踏死，阿拔斯王朝终结。',
+        location: { lat: 33, lon: 44 } },
       { year: 1501, era: '萨非', title: '萨非王朝',
-        description: '萨非王朝确立什叶派为国教，定都伊斯法罕，波斯细密画、建筑达到巅峰。' }
+        description: '萨非王朝确立什叶派为国教，定都伊斯法罕，波斯细密画、建筑达到巅峰。' },
+      { year: 1797, era: '恺加', title: '恺加王朝',
+        description: '阿迦·穆罕默德建立恺加王朝，定都德黑兰，19 世纪与沙俄、英国博弈，逐步沦为半殖民地。' },
+      { year: 1979, era: '现代', title: '伊斯兰革命',
+        description: '霍梅尼领导伊斯兰革命推翻巴列维王朝，建立伊朗伊斯兰共和国，深刻改变中东地缘政治。',
+        location: { lat: 35, lon: 51 } }
     ]
   },
   {
@@ -131,6 +183,9 @@ export const COUNTRIES: CountryHistory[] = [
         description: '苏美尔人在两河流域建立乌鲁克等城市，发明楔形文字、车轮、灌溉农业。',
         artifacts: ['乌鲁克石膏瓶'],
         location: { lat: 31, lon: 45 } },
+      { year: -2334, era: '阿卡德', title: '萨尔贡帝国',
+        description: '萨尔贡建立人类历史上第一个帝国——阿卡德帝国，统一两河流域。',
+        location: { lat: 33, lon: 44 } },
       { year: -2100, era: '乌尔', title: '乌尔第三王朝',
         description: '乌尔纳姆颁布已知最早的成文法典《乌尔纳姆法典》，早于汉谟拉比三百年。' },
       { year: -1792, era: '古巴比伦', title: '汉谟拉比',
@@ -140,7 +195,17 @@ export const COUNTRIES: CountryHistory[] = [
       { year: -883, era: '亚述', title: '亚述帝国',
         description: '亚述以铁制武器和强大军队建立军事帝国，尼尼微图书馆藏有数万块泥板文献。' },
       { year: -626, era: '新巴比伦', title: '空中花园',
-        description: '尼布甲尼撒二世修建传说中的空中花园，巴比伦成为古代世界奇迹之城。' }
+        description: '尼布甲尼撒二世修建传说中的空中花园，巴比伦成为古代世界奇迹之城。' },
+      { year: -539, era: '波斯', title: '居鲁士陷巴比伦',
+        description: '波斯居鲁士大帝兵不血刃攻入巴比伦，著名铭文「和平进入巴比伦」至今藏于大英博物馆。' },
+      { year: 651, era: '伊斯兰', title: '巴士拉建城',
+        description: '阿拉伯人于两河流域建巴士拉城，成为伊斯兰世界重要港口与学术中心。' },
+      { year: 1258, era: '蒙古', title: '巴格达陷落',
+        description: '蒙古军攻陷巴格达，千年学府智慧宫被毁，伊斯兰黄金时代结束。',
+        location: { lat: 33, lon: 44 } },
+      { year: 1921, era: '现代', title: '伊拉克王国',
+        description: '一战后奥斯曼帝国解体，英国托管下费萨尔建立伊拉克王国，奠定现代伊拉克国家雏形。',
+        location: { lat: 33, lon: 44 } }
     ]
   },
   {
@@ -153,12 +218,18 @@ export const COUNTRIES: CountryHistory[] = [
     region: '东亚 · 日本列岛',
     overview: '从绳文、弥生到飞鸟奈良，日本吸收中华文明又发展出独特的和风文化。武士道、禅宗、浮世绘、茶道，构成日本独特的精神世界。',
     timeline: [
+      { year: -10000, era: '绳文', title: '绳文文化',
+        description: '日本进入新石器时代，绳文人以狩猎采集为生，留下精美的绳纹土器与土偶。',
+        artifacts: ['遮光器土偶'] },
       { year: -660, era: '神话', title: '神武天皇',
         description: '相传神武天皇于公元前 660 年建国，日本天皇制延续至今，是世界最长的王朝世系。',
         location: { lat: 34, lon: 135 } },
       { year: 710, era: '奈良', title: '奈良建都',
         description: '元明天皇迁都平城京（奈良），全面学习唐朝制度与文化，佛教兴盛。',
         location: { lat: 34, lon: 136 } },
+      { year: 794, era: '平安', title: '平安京',
+        description: '桓武天皇迁都平安京（京都），开启日本本土文化觉醒，紫式部写出世界最早长篇小说《源氏物语》。',
+        artifacts: ['《源氏物语》'] },
       { year: 1192, era: '镰仓', title: '幕府时代',
         description: '源赖朝建立镰仓幕府，开启武家政权。此后近七百年，天皇大权旁落，幕府统治日本。',
         location: { lat: 35, lon: 140 } },
@@ -166,6 +237,12 @@ export const COUNTRIES: CountryHistory[] = [
         description: '德川家康建立江户幕府，锁国两百余载，浮世绘、歌舞伎、茶道繁荣，武士道成熟。' },
       { year: 1868, era: '近代', title: '明治维新',
         description: '明治天皇「富国强兵」「脱亚入欧」，日本迅速近代化，跻身世界强国。',
+        location: { lat: 35, lon: 139 } },
+      { year: 1945, era: '现代', title: '二战战败',
+        description: '广岛、长崎遭原子弹轰炸后日本投降，战后在美国主导下制定和平宪法，专注经济发展。',
+        location: { lat: 34, lon: 132 } },
+      { year: 1964, era: '现代', title: '东京奥运',
+        description: '东京举办首次亚洲奥运会，象征日本战后复兴，跻身为世界第二大经济体。',
         location: { lat: 35, lon: 139 } }
     ]
   },
@@ -189,7 +266,16 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 1293, era: '满者伯夷', title: '海上帝国',
         description: '满者伯夷帝国统御印尼群岛，控制香料贸易，其首相哈耶·乌鲁克编纂法律大典。' },
       { year: 1350, era: '阿瑜陀耶', title: '暹罗王国',
-        description: '阿瑜陀耶王朝崛起于泰国，建立强大的泰族王国，与明朝、欧洲频繁贸易。' }
+        description: '阿瑜陀耶王朝崛起于泰国，建立强大的泰族王国，与明朝、欧洲频繁贸易。' },
+      { year: 1521, era: '麦哲伦', title: '宿务登陆',
+        description: '麦哲伦环球航行抵达菲律宾宿务，与当地酋长结盟，后在与麦克坦岛原住民冲突中阵亡。',
+        location: { lat: 10, lon: 124 } },
+      { year: 1819, era: '近代', title: '新加坡开埠',
+        description: '斯坦福·莱佛士登陆新加坡，开辟自由港，新加坡成为东南亚转口贸易中心。',
+        location: { lat: 1, lon: 104 } },
+      { year: 1945, era: '现代', title: '印尼独立',
+        description: '苏加诺宣布印度尼西亚独立，结束荷兰长达 350 年的殖民统治。',
+        location: { lat: -6, lon: 107 } }
     ]
   },
 
@@ -209,6 +295,9 @@ export const COUNTRIES: CountryHistory[] = [
       { year: -800, era: '古风', title: '城邦兴起',
         description: '希腊城邦如雅典、斯巴达、科林斯兴起，开启独特的城邦政治传统。',
         location: { lat: 38, lon: 24 } },
+      { year: -776, era: '古风', title: '首届奥运会',
+        description: '首届古代奥运会在奥林匹亚举行，此后每四年一届，延续近千年。',
+        location: { lat: 37, lon: 22 } },
       { year: -508, era: '古典', title: '雅典民主',
         description: '克里斯提尼改革确立雅典民主制，公民大会决定国家大事，开创人类政治史先河。' },
       { year: -480, era: '古典', title: '希波战争',
@@ -221,7 +310,15 @@ export const COUNTRIES: CountryHistory[] = [
       { year: -399, era: '古典', title: '苏格拉底之死',
         description: '苏格拉底因「毒害青年」被雅典判处饮鸩，其弟子柏拉图、再传弟子亚里士多德奠定西方哲学。' },
       { year: -336, era: '希腊化', title: '亚历山大东征',
-        description: '亚历山大大帝征服波斯、埃及、印度，开启希腊化时代，东西文明交融。' }
+        description: '亚历山大大帝征服波斯、埃及、印度，开启希腊化时代，东西文明交融。' },
+      { year: -146, era: '罗马', title: '希腊被征服',
+        description: '罗马征服希腊，但反被希腊文化折服——「被征服的希腊征服了野蛮的征服者」。' },
+      { year: 1832, era: '近代', title: '希腊独立',
+        description: '希腊在英、法、俄支持下从奥斯曼帝国独立，成为现代希腊王国。',
+        location: { lat: 38, lon: 24 } },
+      { year: 2004, era: '现代', title: '雅典奥运',
+        description: '雅典时隔 108 年再次举办夏季奥运会，象征希腊文明在现代世界的回响。',
+        location: { lat: 38, lon: 24 } }
     ]
   },
   {
@@ -239,6 +336,8 @@ export const COUNTRIES: CountryHistory[] = [
         location: { lat: 42, lon: 12 } },
       { year: -509, era: '共和', title: '罗马共和国',
         description: '驱逐王政，建立共和国，由执政官、元老院、公民大会共治，逐步统一意大利。' },
+      { year: -218, era: '共和', title: '布匿战争',
+        description: '罗马与迦太基三次布匿战争，最终击败汉尼拔，确立地中海霸权。' },
       { year: -27, era: '帝国', title: '奥古斯都',
         description: '屋大维获「奥古斯都」称号，罗马帝国建立，开启两百年「罗马和平」（Pax Romana）。',
         location: { lat: 42, lon: 12 } },
@@ -249,7 +348,16 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 313, era: '晚期', title: '米兰敕令',
         description: '君士坦丁大帝颁布米兰敕令，承认基督教合法地位，基督教从此走向世界宗教。' },
       { year: 476, era: '灭亡', title: '西罗马灭亡',
-        description: '日耳曼人奥多亚塞废黜西罗马末代皇帝，西罗马帝国灭亡，欧洲进入中世纪。' }
+        description: '日耳曼人奥多亚塞废黜西罗马末代皇帝，西罗马帝国灭亡，欧洲进入中世纪。' },
+      { year: 800, era: '中世纪', title: '查理曼加冕',
+        description: '教皇利奥三世为法兰克王查理曼加冕为「罗马人的皇帝」，神圣罗马帝国雏形初现。',
+        location: { lat: 50, lon: 7 } },
+      { year: 1453, era: '晚期', title: '君堡陷落',
+        description: '奥斯曼苏丹穆罕默德二世攻陷君士坦丁堡，东罗马帝国（拜占庭）灭亡，希腊学者西迁引爆文艺复兴。',
+        location: { lat: 41, lon: 29 } },
+      { year: 1870, era: '现代', title: '意大利统一',
+        description: '撒丁王国加富尔借助加里波第「千人远征军」统一意大利半岛，定都罗马。',
+        location: { lat: 42, lon: 12 } }
     ]
   },
   {
@@ -264,20 +372,32 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -3000, era: '新石器', title: '巨石阵',
         description: '索尔兹伯里平原的巨石阵开始建造，是欧洲最重要的史前天文与宗教遗址。',
-        image: '/generated/stonehenge_001.jpg',
         artifacts: ['巨石阵'],
         location: { lat: 51, lon: -2 } },
+      { year: 43, era: '罗马', title: '克劳狄征服',
+        description: '罗马皇帝克劳狄征服不列颠，建伦敦(Londinium)，修哈德良长城。' },
       { year: 1066, era: '中世纪', title: '诺曼征服',
         description: '诺曼底公爵威廉击败盎格鲁-撒克逊国王哈罗德，开启英国封建集权时代。',
         location: { lat: 51, lon: 0 } },
       { year: 1215, era: '中世纪', title: '大宪章',
         description: '约翰王被迫签署《大宪章》，王权受限，成为宪政与法治传统的源头。' },
+      { year: 1453, era: '中世纪', title: '玫瑰战争',
+        description: '兰开斯特与约克两大家族为王位开战 30 年，亨利七世建立都铎王朝终结乱局。' },
+      { year: 1588, era: '近代', title: '击败无敌舰队',
+        description: '伊丽莎白一世治下英国海军击败西班牙「无敌舰队」，开启海上强国之路。',
+        location: { lat: 50, lon: -2 } },
       { year: 1688, era: '近代', title: '光荣革命',
         description: '不流血的光荣革命确立君主立宪制，议会主权取代王权专制。' },
       { year: 1769, era: '近代', title: '工业革命',
         description: '瓦特改良蒸汽机，英国率先开启工业革命，机械化生产改变世界。' },
       { year: 1815, era: '帝国', title: '日不落帝国',
-        description: '拿破仑战争后，英国成为全球霸主，殖民地遍布全球，「日不落帝国」鼎盛。' }
+        description: '拿破仑战争后，英国成为全球霸主，殖民地遍布全球，「日不落帝国」鼎盛。' },
+      { year: 1924, era: '现代', title: '工党执政',
+        description: '工党首次执政，拉姆齐·麦克唐纳出任首相，英国福利国家制度逐步建立。',
+        location: { lat: 51, lon: 0 } },
+      { year: 1940, era: '二战', title: '丘吉尔',
+        description: '丘吉尔出任首相带领英国独自抵抗纳粹德国一年半，发表「血、汗与眼泪」演说。',
+        location: { lat: 51, lon: 0 } }
     ]
   },
   {
@@ -302,7 +422,17 @@ export const COUNTRIES: CountryHistory[] = [
         description: '攻占巴士底狱，颁布《人权宣言》，推翻波旁王朝，「自由、平等、博爱」传遍世界。',
         location: { lat: 49, lon: 2 } },
       { year: 1804, era: '帝国', title: '拿破仑加冕',
-        description: '拿破仑称帝，颁布《拿破仑法典》，横扫欧洲，重塑近代欧洲版图。' }
+        description: '拿破仑称帝，颁布《拿破仑法典》，横扫欧洲，重塑近代欧洲版图。' },
+      { year: 1889, era: '近代', title: '埃菲尔铁塔',
+        description: '埃菲尔铁塔落成，作为 1889 年世博会入口，是当时世界最高建筑（300 米）。',
+        artifacts: ['埃菲尔铁塔'],
+        location: { lat: 49, lon: 2 } },
+      { year: 1944, era: '二战', title: '诺曼底登陆',
+        description: '盟军在诺曼底开辟第二战场，加速纳粹德国覆灭。',
+        location: { lat: 49, lon: -1 } },
+      { year: 1957, era: '现代', title: '欧洲煤钢共同体',
+        description: '法德等六国签订《罗马条约》成立欧洲经济共同体（欧盟前身），开启欧洲一体化进程。',
+        location: { lat: 49, lon: 2 } }
     ]
   },
   {
@@ -325,8 +455,21 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 1682, era: '沙俄', title: '彼得大帝',
         description: '彼得大帝全面西化改革，迁都圣彼得堡，建立俄罗斯帝国，跻身欧洲列强。',
         location: { lat: 59, lon: 30 } },
+      { year: 1812, era: '帝国', title: '击败拿破仑',
+        description: '库图佐夫率俄军以空间换时间击败拿破仑，俄国成为欧洲救世主。',
+        location: { lat: 55, lon: 37 } },
+      { year: 1861, era: '近代', title: '废除农奴制',
+        description: '亚历山大二世签署解放农奴令，俄罗斯迈出近代化关键一步。' },
       { year: 1917, era: '现代', title: '十月革命',
-        description: '列宁领导布尔什维克夺取政权，建立苏维埃，开创人类第一个社会主义国家。' }
+        description: '列宁领导布尔什维克夺取政权，建立苏维埃，开创人类第一个社会主义国家。' },
+      { year: 1941, era: '二战', title: '莫斯科保卫战',
+        description: '苏联军民在莫斯科城下粉碎德军「台风行动」，打破纳粹不可战胜神话。',
+        location: { lat: 55, lon: 37 } },
+      { year: 1957, era: '冷战', title: '人造卫星',
+        description: '苏联发射「斯普特尼克一号」，人类第一颗人造卫星，开启太空时代。' },
+      { year: 1991, era: '现代', title: '苏联解体',
+        description: '苏联正式解体，分裂为 15 个国家，冷战格局结束。',
+        location: { lat: 55, lon: 37 } }
     ]
   },
 
@@ -350,7 +493,7 @@ export const COUNTRIES: CountryHistory[] = [
         description: '胡夫法老修建吉萨大金字塔，高 146 米，是世界七大奇迹唯一存世者。',
         artifacts: ['吉萨金字塔群'],
         location: { lat: 30, lon: 31 } },
-      { year: -1332, era: '新王国', title: '图坦卡蒙',
+      { year: -1353, era: '新王国', title: '图坦卡蒙',
         description: '少年法老图坦卡蒙的陵墓于 1922 年被发现，黄金面具震撼世界。',
         artifacts: ['图坦卡蒙黄金面具'],
         location: { lat: 26, lon: 33 } },
@@ -359,7 +502,19 @@ export const COUNTRIES: CountryHistory[] = [
       { year: -332, era: '希腊化', title: '亚历山大征服',
         description: '亚历山大大帝征服埃及，建立亚历山大港，希腊化时代开启。' },
       { year: -30, era: '罗马', title: '克娄巴特拉',
-        description: '末代法老克娄巴特拉七世自杀，埃及并入罗马帝国，法老时代终结。' }
+        description: '末代法老克娄巴特拉七世自杀，埃及并入罗马帝国，法老时代终结。' },
+      { year: 641, era: '阿拉伯', title: '开罗建城',
+        description: '阿拉伯人征服埃及，开罗成为伊斯兰世界新中心，爱资哈尔大学创立。',
+        location: { lat: 30, lon: 31 } },
+      { year: 1799, era: '近代', title: '罗塞塔石碑',
+        description: '拿破仑远征军发现罗塞塔石碑，1822 年商博良据此破译埃及象形文字。',
+        location: { lat: 31, lon: 30 } },
+      { year: 1922, era: '现代', title: '图坦卡蒙陵墓',
+        description: '霍华德·卡特发现图坦卡蒙陵墓，3000 年未被盗的珍宝震惊世界。',
+        location: { lat: 26, lon: 33 } },
+      { year: 1952, era: '现代', title: '七月革命',
+        description: '纳赛尔领导「自由军官组织」推翻法鲁克王朝，埃及共和国建立，苏伊士运河收归国有。',
+        location: { lat: 30, lon: 31 } }
     ]
   },
   {
@@ -382,7 +537,14 @@ export const COUNTRIES: CountryHistory[] = [
         artifacts: ['廷巴克图清真寺'],
         location: { lat: 17, lon: 0 } },
       { year: 1493, era: '桑海', title: '桑海帝国',
-        description: '桑海帝国取代马里，统治西非两百年，达于鼎盛。' }
+        description: '桑海帝国取代马里，统治西非两百年，达于鼎盛。' },
+      { year: 1591, era: '摩洛哥入侵', title: '塔瓦多战役',
+        description: '摩洛哥军队跨撒哈拉远征，桑海帝国战败，西非大帝国时代终结。' },
+      { year: 1885, era: '殖民', title: '柏林会议',
+        description: '列强在柏林会议瓜分非洲，划定法属西非、英属冈比亚等势力范围。' },
+      { year: 1960, era: '现代', title: '马里独立',
+        description: '法属苏丹独立成为马里共和国，开启非洲独立浪潮。',
+        location: { lat: 12, lon: -8 } }
     ]
   },
   {
@@ -405,7 +567,15 @@ export const COUNTRIES: CountryHistory[] = [
         artifacts: ['拉利贝拉岩石教堂'],
         location: { lat: 12, lon: 39 } },
       { year: 1270, era: '所罗门', title: '所罗门王朝',
-        description: '自称所罗门王与示巴女王后裔的王朝建立，统治埃塞俄比亚直至 1974 年。' }
+        description: '自称所罗门王与示巴女王后裔的王朝建立，统治埃塞俄比亚直至 1974 年。' },
+      { year: 1896, era: '近代', title: '阿杜瓦战役',
+        description: '孟尼利克二世率军在阿杜瓦击败意大利侵略者，捍卫独立，是非洲抗殖民的标志性胜利。',
+        location: { lat: 14, lon: 39 } },
+      { year: 1936, era: '现代', title: '意占时期',
+        description: '墨索里尼入侵并短暂占领埃塞俄比亚，海尔·塞拉西一世流亡英国。' },
+      { year: 1974, era: '现代', title: '王朝终结',
+        description: '门格斯图发动军事政变废黜海尔·塞拉西，建立社会主义政权，延续千年的所罗门王朝终结。',
+        location: { lat: 9, lon: 38 } }
     ]
   },
 
@@ -425,18 +595,27 @@ export const COUNTRIES: CountryHistory[] = [
       { year: -1000, era: '前古典', title: '前古典期',
         description: '玛雅人在尤卡坦与危地马拉高地建立早期村落，发展玉米农业。',
         location: { lat: 17, lon: -89 } },
+      { year: -36, era: '前古典', title: '奥尔梅克继承者',
+        description: '玛雅人从奥尔梅克文明继承美洲豹崇拜、跪像传统，开始构筑小型神庙。' },
       { year: 250, era: '古典', title: '古典期鼎盛',
         description: '蒂卡尔、帕伦克、科潘等城邦繁荣，玛雅文字、历法、天文学达到巅峰。',
         artifacts: ['蒂卡尔金字塔'],
         location: { lat: 17, lon: -89 } },
       { year: 615, era: '古典', title: '帕卡尔王',
         description: '帕伦克国王帕卡尔葬于铭文神庙，其玉石面具与石棺盖成为玛雅艺术杰作。' },
+      { year: 683, era: '古典', title: '帕卡尔驾崩',
+        description: '帕伦克国王帕卡尔去世，墓室于 1952 年被发现，被誉为「美洲庞贝」。' },
       { year: 900, era: '古典晚期', title: '古典期崩溃',
         description: '南部低地玛雅城邦相继衰落废弃，原因至今成谜（旱灾、战争、人口压力？）。' },
       { year: 987, era: '后古典', title: '奇琴伊察',
         description: '托尔特克影响的奇琴伊察崛起，库库尔坎金字塔的「蛇影奇观」延续至今。',
         artifacts: ['奇琴伊察金字塔'],
-        location: { lat: 21, lon: -88 } }
+        location: { lat: 21, lon: -88 } },
+      { year: 1697, era: '殖民', title: '玛雅末邦陷落',
+        description: '西班牙人攻陷最后一个玛雅城邦诺特佩蒂亚，玛雅独立政治实体时代终结。' },
+      { year: 2012, era: '现代', title: '玛雅历法迷思',
+        description: '玛雅长计历周期结束被误解为「世界末日」，引发全球范围末日恐慌，反向推动玛雅文化复兴。',
+        location: { lat: 17, lon: -89 } }
     ]
   },
   {
@@ -456,8 +635,20 @@ export const COUNTRIES: CountryHistory[] = [
         description: '特诺奇蒂特兰、特斯科科、特拉科潘结成同盟，建立阿兹特克帝国，称霸中美洲。' },
       { year: 1487, era: '帝国', title: '大神庙',
         description: '阿兹特克重建大神庙（Templo Mayor），祭祀雨神与战神，是帝国宗教中心。' },
+      { year: 1502, era: '帝国', title: '蒙特祖玛二世',
+        description: '蒙特祖玛二世继位，帝国达到鼎盛；其后帝国霸权因征服战争与活人献祭争议而摇摇欲坠。' },
       { year: 1519, era: '征服', title: '科尔特斯登陆',
-        description: '西班牙征服者科尔特斯登陆墨西哥，利用原住民矛盾与天花，两年内摧毁阿兹特克帝国。' }
+        description: '西班牙征服者科尔特斯登陆墨西哥，利用原住民矛盾与天花，两年内摧毁阿兹特克帝国。',
+        location: { lat: 19, lon: -97 } },
+      { year: 1521, era: '灭亡', title: '铁诺奇提特兰陷落',
+        description: '特诺奇蒂特兰被围 93 天后陷落，库奥赫特莫克被俘，帝国灭亡，西班牙在废墟上建墨西哥城。',
+        location: { lat: 19, lon: -99 } },
+      { year: 1810, era: '近代', title: '墨西哥独立',
+        description: '米格尔·伊达尔戈在多洛雷斯敲响独立钟声，开启墨西哥独立战争。',
+        location: { lat: 21, lon: -101 } },
+      { year: 1910, era: '现代', title: '墨西哥革命',
+        description: '墨西哥革命爆发，结束波费里奥·迪亚斯 30 多年独裁，奠定现代墨西哥宪政。',
+        location: { lat: 19, lon: -99 } }
     ]
   },
   {
@@ -470,19 +661,30 @@ export const COUNTRIES: CountryHistory[] = [
     region: '南美 · 安第斯山脉',
     overview: '前哥伦布时代美洲最大的帝国。从库斯科到马丘比丘，印加以结绳记事、梯田农业、精密道路网统治安第斯四千万臣民。',
     timeline: [
+      { year: 1200, era: '前印加', title: '蒂亚瓦纳科',
+        description: '的的喀喀湖畔的蒂亚瓦纳科文明繁荣，建太阳门，为后来印加文明奠基。',
+        location: { lat: -16, lon: -68 } },
       { year: 1438, era: '建国', title: '帕查库蒂',
         description: '帕查库蒂击败昌卡人，开启印加扩张，建立塔万廷苏尤（印加帝国）。',
         location: { lat: -13, lon: -72 } },
       { year: 1450, era: '帝国', title: '马丘比丘',
         description: '帕查库蒂修建马丘比丘山顶行宫，印加石砌工艺登峰造极，至今无灰浆而屹立。',
-        image: '/generated/inca_001.jpg',
         artifacts: ['马丘比丘'],
         location: { lat: -13, lon: -72 } },
+      { year: 1471, era: '帝国', title: '图帕克',
+        description: '图帕克·印加·尤潘基征服智利、玻利维亚、厄瓜多尔，将帝国版图扩至最大。' },
       { year: 1493, era: '鼎盛', title: '瓦伊纳·卡帕克',
         description: '印加帝国达到鼎盛，疆域从哥伦比亚延伸至智利，统御安第斯四千万臣民。' },
-      { year: 1532, era: '征服', title: '皮萨罗征服',
-        description: '西班牙征服者皮萨罗俘虏印加皇帝阿塔瓦尔帕，勒索满屋黄金后将其处死，印加帝国灭亡。',
-        location: { lat: -13, lon: -72 } }
+      { year: 1527, era: '内战', title: '帝国分裂',
+        description: '瓦伊纳·卡帕克死于天花，两子阿塔瓦尔帕与瓦斯卡尔内战，帝国元气大伤。' },
+      { year: 1532, era: '征服', title: '皮萨罗俘皇帝',
+        description: '西班牙征服者皮萨罗在卡哈马卡俘获印加皇帝阿塔瓦尔帕，勒索满屋黄金后将其处死。',
+        location: { lat: -7, lon: -78 } },
+      { year: 1572, era: '灭亡', title: '末代皇帝',
+        description: '末代印加皇帝图帕克·阿马鲁被西班牙人处决，印加帝国正式灭亡。' },
+      { year: 1821, era: '现代', title: '秘鲁独立',
+        description: '何塞·德·圣马丁在利马宣布秘鲁独立，印加古地重生为现代国家。',
+        location: { lat: -12, lon: -77 } }
     ]
   },
   {
@@ -498,6 +700,9 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 1607, era: '殖民', title: '詹姆斯敦',
         description: '英国人在弗吉尼亚建立第一个永久殖民地詹姆斯敦，开启英属北美殖民史。',
         location: { lat: 37, lon: -77 } },
+      { year: 1620, era: '殖民', title: '五月花号',
+        description: '清教徒乘五月花号抵达普利茅斯，签署《五月花号公约》，奠定美国自治传统。',
+        location: { lat: 42, lon: -70 } },
       { year: 1776, era: '独立', title: '独立宣言',
         description: '杰斐逊起草《独立宣言》，「人人生而平等」，美国独立战争开始。',
         location: { lat: 40, lon: -74 } },
@@ -506,11 +711,23 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 1861, era: '内战', title: '南北战争',
         description: '林肯领导北方击败南方邦联，废除奴隶制，维护国家统一。',
         location: { lat: 39, lon: -77 } },
+      { year: 1865, era: '重建', title: '林肯遇刺',
+        description: '林肯在福特剧院遇刺，北方军总司令格兰特接任总统，重建时期开启。',
+        location: { lat: 39, lon: -77 } },
+      { year: 1929, era: '近代', title: '大萧条',
+        description: '华尔街股灾引发全球经济大萧条，罗斯福新政开启现代国家干预经济模式。',
+        location: { lat: 40, lon: -74 } },
+      { year: 1941, era: '二战', title: '珍珠港',
+        description: '日本偷袭珍珠港，美国正式参战，太平洋战争爆发。',
+        location: { lat: 21, lon: -158 } },
       { year: 1945, era: '二战后', title: '超级大国',
         description: '二战后美国成为超级大国，主导布雷顿森林体系、联合国、北约，开启冷战。' },
       { year: 1969, era: '太空', title: '阿波罗登月',
         description: '阿姆斯特朗踏上月球，「人类的一大步」，美国赢得太空竞赛。',
-        location: { lat: 28, lon: -80 } }
+        location: { lat: 28, lon: -80 } },
+      { year: 2008, era: '现代', title: '奥巴马当选',
+        description: '贝拉克·奥巴马当选美国第 44 任总统，是美国历史上首位非裔总统。',
+        location: { lat: 38, lon: -77 } }
     ]
   },
 
@@ -534,9 +751,21 @@ export const COUNTRIES: CountryHistory[] = [
         description: '毛利形成数十个 iwi（部落），以 marae（议事堂）为中心，发展木雕、绿石工艺、哈卡战舞。' },
       { year: 1642, era: '接触', title: '塔斯曼初见',
         description: '荷兰航海家塔斯曼首次抵达新西兰，与毛利人发生冲突，欧洲人称之为「杀人者之湾」。' },
+      { year: 1769, era: '接触', title: '库克船长',
+        description: '詹姆斯·库克船长环绕新西兰并绘制详图，新西兰正式进入欧洲视野。',
+        location: { lat: -41, lon: 174 } },
       { year: 1840, era: '殖民', title: '怀唐伊条约',
         description: '英国与毛利酋长签订《怀唐伊条约》，新西兰成为英国殖民地，但条约解释至今仍有争议。',
-        location: { lat: -35, lon: 174 } }
+        location: { lat: -35, lon: 174 } },
+      { year: 1860, era: '殖民', title: '毛利战争',
+        description: '毛利人因土地问题与英国殖民者爆发「土地战争」，毛利人虽败但保留部分自治权。' },
+      { year: 1893, era: '近代', title: '女性投票权',
+        description: '新西兰成为世界上第一个赋予女性投票权的国家，凯蒂·谢泼德领导请愿获国会通过。' },
+      { year: 1907, era: '现代', title: '新西兰自治领',
+        description: '新西兰获得「大英帝国自治领」地位，象征英属殖民地自治化进程。' },
+      { year: 1975, era: '现代', title: '怀唐伊法庭',
+        description: '新西兰设立怀唐伊法庭审理毛利人土地与文化权利申诉，承认《怀唐伊条约》的法律效力。',
+        location: { lat: -41, lon: 174 } }
     ]
   },
   {
@@ -556,10 +785,22 @@ export const COUNTRIES: CountryHistory[] = [
       { year: 300, era: '扩张', title: '发现夏威夷',
         description: '波利尼西亚航海者凭借星象、洋流、鸟踪，跨越数千公里发现并定居夏威夷。',
         location: { lat: 20, lon: -157 } },
-      { year: 900, era: '扩张', title: '复活节岛',
+      { year: 700, era: '扩张', title: '发现复活节岛',
         description: '波利尼西亚人抵达世界最孤立的有人岛——拉帕努伊（复活节岛），雕凿巨型摩艾石像。',
         artifacts: ['复活节岛摩艾石像'],
         location: { lat: -27, lon: -109 } },
+      { year: 900, era: '扩张', title: '定居汤加',
+        description: '汤加王国成为波利尼西亚的政治中心，是当时最强大的海洋帝国之一。',
+        location: { lat: -21, lon: -175 } },
+      { year: 1250, era: '扩张', title: '发现新西兰',
+        description: '东波利尼西亚航海者发现并定居新西兰，建立毛利文明（详见毛利文明条目）。',
+        location: { lat: -41, lon: 174 } },
+      { year: 1722, era: '欧洲接触', title: '复活节命名',
+        description: '荷兰航海家雅各布·罗格文在复活节当天抵达复活节岛，欧洲人首次记录摩艾石像。',
+        location: { lat: -27, lon: -109 } },
+      { year: 1778, era: '欧洲接触', title: '库克到夏威夷',
+        description: '詹姆斯·库克抵达夏威夷，欧洲人首次记录夏威夷王国文化，后被卡米哈米哈一世统一。',
+        location: { lat: 20, lon: -157 } },
       { year: 1976, era: '复兴', title: 'Hōkūleʻa',
         description: '夏威夷人重建传统航海独木舟 Hōkūleʻa，无现代仪器航行至塔希提，复兴波利尼西亚航海传统。' }
     ]

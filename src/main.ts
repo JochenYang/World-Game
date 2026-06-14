@@ -99,7 +99,7 @@ async function bootstrap() {
     globe.setAutoRotate(false);
   });
 
-  // 卷轴关闭后复位
+  // 卷轴彻底关闭后复位（pop 上一层时不触发）
   scrollPanel.setOnClose(() => {
     hud.set(null);
     // 仅在大陆溯源/列国史视图下复位相机；编年史视图保持自转
