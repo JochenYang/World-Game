@@ -69,6 +69,7 @@ const AFRICA: ContinentContent = {
       location: { lat: 16, lon: 18 } },
     { year: -3_200_000, era: '上新世', title: '露西 · 南方古猿',
       description: '埃塞俄比亚阿法低谷的"露西"(AL 288-1)，完整度达 40%，是人类首次直观认识"直立行走的祖先"。',
+      image: '/generated/lucy_001.jpg',
       artifacts: ['阿法低谷 AL 288-1 骨架'],
       location: { lat: 11, lon: 40 } },
     { year: -2_600_000, era: '更新世', title: '奥杜瓦伊石器',
@@ -100,6 +101,7 @@ const ASIA: ContinentContent = {
       location: { lat: 42, lon: 89 } },
     { year: -125_000_000, era: '白垩纪', title: '热河生物群',
       description: '中国辽西热河生物群保存了带羽毛的恐龙(如中华龙鸟)、早期哺乳动物与早期被子植物，是白垩纪陆地生态的"庞贝城"。',
+      image: '/generated/jehol_001.jpg',
       artifacts: ['热河生物群 中华龙鸟化石'],
       location: { lat: 41, lon: 120 } },
     { year: -55_000_000, era: '古近纪', title: '印度板块撞欧亚',
@@ -130,6 +132,7 @@ const ASIA: ContinentContent = {
       location: { lat: 67, lon: 105 } },
     { year: -10_000, era: '全新世', title: '稻作起源',
       description: '长江中下游的彭头山、贾湖等遗址显示，万年前中国先民已开始驯化野生稻，开启东亚农业社会。',
+      image: '/generated/rice_001.jpg',
       artifacts: ['贾湖遗址 碳化稻米、龟甲符号'],
       location: { lat: 33, lon: 114 } },
     { year: -3500, era: '青铜时代', title: '二里头夏都',
@@ -176,6 +179,7 @@ const EUROPE: ContinentContent = {
       location: { lat: 45, lon: 25 } },
     { year: -37_000, era: '更新世晚期', title: '肖维岩洞壁画',
       description: '法国肖维岩洞(Grotte Chauvet)出土超过千幅壁画，包括狮子、犀牛、猛犸等，画艺精湛，被誉为"史前西斯廷"。',
+      image: '/generated/chauvet_001.jpg',
       artifacts: ['肖维岩洞壁画'],
       location: { lat: 44, lon: 4 } },
     { year: -17_000, era: '更新世晚期', title: '拉斯科壁画',
@@ -188,6 +192,7 @@ const EUROPE: ContinentContent = {
       location: { lat: 48, lon: 18 } },
     { year: -3000, era: '青铜时代', title: '巨石阵',
       description: '英国索尔兹伯里平原的巨石阵(Stonehenge)开始建造，标志欧洲进入青铜时代，也是人类天文学最早的纪念碑。',
+      image: '/generated/stonehenge_001.jpg',
       artifacts: ['巨石阵'],
       location: { lat: 51, lon: -2 } }
   ]
@@ -260,6 +265,7 @@ const SOUTH_AMERICA: ContinentContent = {
       location: { lat: -30, lon: -53 } },
     { year: -70_000_000, era: '白垩纪', title: '阿根廷龙',
       description: '阿根廷巴塔哥尼亚出土的阿根廷龙(Argentinosaurus huinculensis)，是已知最大的蜥脚类恐龙之一，体长超过 30 米。',
+      image: '/generated/argentinosaurus_001.jpg',
       artifacts: ['阿根廷龙 Argentinosaurus'],
       location: { lat: -39, lon: -69 } },
     { year: -20_000, era: '末次冰盛期', title: '更新世巨型动物',
@@ -284,6 +290,7 @@ const SOUTH_AMERICA: ContinentContent = {
       location: { lat: -10, lon: -77 } },
     { year: -1500, era: '历史时期', title: '印加帝国',
       description: '印加人以库斯科为中心，建立起从厄瓜多尔到智利的庞大帝国，修建马丘比丘、太阳节(Inti Raymi)。',
+      image: '/generated/inca_001.jpg',
       location: { lat: -13, lon: -72 } }
   ]
 };
@@ -370,6 +377,7 @@ const ANTARCTICA: ContinentContent = {
       location: { lat: -69, lon: 90 } },
     { year: -1911, era: '历史时期', title: '阿蒙森抵达南极点',
       description: '挪威人罗阿尔·阿蒙森率队使用狗拉雪橇，于 1911 年 12 月 14 日率先抵达南极点，比英国斯科特队早 35 天。',
+      image: '/generated/amundsen_001.jpg',
       location: { lat: -90, lon: 0 } },
     { year: -1912, era: '历史时期', title: '斯科特悲壮折戟',
       description: '英国海军上校罗伯特·斯科特在归途中遇难，其日记"为上帝的荣光，为祖国的荣光"成为南极探险精神的绝唱。',
