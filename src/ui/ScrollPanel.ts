@@ -52,6 +52,7 @@ export class ScrollPanel {
           <li class="timeline__item" style="animation-delay: ${0.1 + i * 0.06}s">
             <div class="timeline__year">${formatYear(ev.year)}</div>
             ${ev.era ? `<div class="timeline__era">${escapeHtml(ev.era)}</div>` : ''}
+            ${ev.image ? `<div class="timeline__image"><img src="${escapeHtml(ev.image)}" alt="${escapeHtml(ev.title)}" loading="lazy" /></div>` : ''}
             <h3 class="timeline__title">${escapeHtml(ev.title)}</h3>
             <p class="timeline__desc">${escapeHtml(ev.description)}</p>
             ${ev.artifacts && ev.artifacts.length

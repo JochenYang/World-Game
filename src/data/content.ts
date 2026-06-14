@@ -21,6 +21,7 @@ export interface OriginEvent {
   description: string;
   artifacts?: string[];
   location?: { lat: number; lon: number };
+  image?: string;               // AI 生成配图路径（/generated/xxx.jpg）
 }
 
 export interface ContinentContent {
@@ -37,6 +38,7 @@ const AFRICA: ContinentContent = {
   timeline: [
     { year: -4_540_000_000, era: '冥古宙', title: '地球形成',
       description: '原始地球由太阳星云吸积而成，地表为炽热岩浆海。月球的形成或与一次火星大小天体"忒伊亚"的撞击有关。',
+      image: '/generated/hadean_001.jpg',
       location: { lat: 0, lon: 20 } },
     { year: -3_500_000_000, era: '太古宙', title: '最早的微生物岩',
       description: '南非巴伯顿绿岩带与西澳大利亚的叠层石，是已知最古老的生命痕迹，揭示 35 亿年前蓝细菌已开始光合作用并释放氧气。',
@@ -44,9 +46,11 @@ const AFRICA: ContinentContent = {
       location: { lat: -26, lon: 31 } },
     { year: -635_000_000, era: '成冰纪', title: '雪球地球',
       description: '罗迪尼亚超大陆裂解后，全球冰川从两极延伸至赤道，地球几成"雪球"。其后火山喷发与生物演化共同推动气候解冻。',
+      image: '/generated/snowball_001.jpg',
       location: { lat: -20, lon: 25 } },
     { year: -541_000_000, era: '寒武纪', title: '寒武纪大爆发',
       description: '在相对短暂的窗口期，几乎所有现代动物门类突然出现。摩洛哥早寒武世化石库见证了这场演化壮举。',
+      image: '/generated/cambrian_001.jpg',
       location: { lat: 31, lon: -7 } },
     { year: -250_000_000, era: '二叠纪', title: '卡鲁盆地兽孔类',
       description: '南非卡鲁盆地出土的兽孔类（如 Lystrosaurus）化石，记录了二叠纪大灭绝后生物复苏的景象，哺乳动物的远祖已现端倪。',
@@ -89,6 +93,7 @@ const ASIA: ContinentContent = {
   timeline: [
     { year: -200_000_000, era: '侏罗纪', title: '吐鲁番硅化木森林',
       description: '新疆吐鲁番盆地出土的硅化木森林，包含水杉、银杏等远古树种，完整保存了侏罗纪生态——恐龙时代亚欧大陆内部也曾郁郁葱葱。',
+      image: '/generated/jurassic_001.jpg',
       artifacts: ['吐鲁番硅化木'],
       location: { lat: 42, lon: 89 } },
     { year: -125_000_000, era: '白垩纪', title: '热河生物群',
@@ -112,6 +117,7 @@ const ASIA: ContinentContent = {
       location: { lat: 25, lon: 102 } },
     { year: -500_000, era: '更新世', title: '北京人',
       description: '周口店龙骨山出土的"北京人"(Homo erectus pekinensis)，使用石制工具、可能最早用火，是东亚旧石器时代的标志。',
+      image: '/generated/zhoukoudian_001.jpg',
       artifacts: ['周口店第一地点石器、用火遗迹'],
       location: { lat: 39, lon: 116 } },
     { year: -40_000, era: '更新世晚期', title: '山顶洞人',
@@ -170,6 +176,7 @@ const EUROPE: ContinentContent = {
       location: { lat: 44, lon: 4 } },
     { year: -17_000, era: '更新世晚期', title: '拉斯科壁画',
       description: '法国多尔多涅的拉斯科岩洞被誉为"史前卢浮宫"，其野马与中国水墨有异曲同工的写意之美。',
+      image: '/generated/lascaux_001.jpg',
       artifacts: ['拉斯科岩洞壁画'],
       location: { lat: 45, lon: 1 } },
     { year: -9_000, era: '全新世', title: '近东农业扩散',
@@ -198,6 +205,7 @@ const NORTH_AMERICA: ContinentContent = {
       location: { lat: 40, lon: -100 } },
     { year: -66_000_000, era: '白垩纪末', title: '希克苏鲁伯撞击',
       description: '墨西哥湾希克苏鲁伯陨石撞击事件造成白垩纪末大灭绝，恐龙时代终结。北美同时代地层保存了清晰的铱异常与冲击石英。',
+      image: '/generated/impact_001.jpg',
       artifacts: ['希克苏鲁伯撞击坑'],
       location: { lat: 21, lon: -89 } },
     { year: -55_000_000, era: '古近纪', title: '怀俄明湖相',
@@ -344,6 +352,7 @@ const ANTARCTICA: ContinentContent = {
       location: { lat: -77, lon: 160 } },
     { year: -2_580_000, era: '第四纪', title: '冰河时代',
       description: '第四纪冰河时代开始，南极冰盖进一步扩张——冰河时代并非只有北半球，南极同样是冰河时代的中心。',
+      image: '/generated/iceage_001.jpg',
       location: { lat: -85, lon: 0 } },
     { year: -1821, era: '历史时期', title: '别林斯高晋初见',
       description: '俄国探险家别林斯高晋(Fabian von Bellingshausen)率船队抵达南极洲海岸，是人类首次确认这片大陆的存在。',
