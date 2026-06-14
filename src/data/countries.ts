@@ -36,6 +36,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -2070, era: '上古', title: '夏朝建立',
         description: '相传大禹治水后，其子启建立夏朝，开启中国「家天下」世袭王朝之始。二里头遗址或为夏都所在。',
+        image: '/generated/china_001.jpg',
         artifacts: ['二里头遗址 青铜爵、绿松石龙形器'],
         location: { lat: 34, lon: 112 } },
       { year: -1250, era: '商', title: '甲骨文',
@@ -118,6 +119,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -2500, era: '印度河文明', title: '摩亨佐-达罗',
         description: '印度河谷出现高度城市规划的青铜文明，砖砌街道、下水道、公共浴池，规模与组织令人惊叹。',
+        image: '/generated/india_001.jpg',
         artifacts: ['摩亨佐-达罗遗址'],
         location: { lat: 27, lon: 68 } },
       { year: -1500, era: '吠陀时代', title: '雅利安人迁入',
@@ -172,6 +174,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -550, era: '阿契美尼德', title: '居鲁士大帝',
         description: '居鲁士建立阿契美尼德波斯帝国，疆域横跨亚非欧，是人类第一个「世界帝国」。',
+        image: '/generated/persia_001.jpg',
         artifacts: ['波斯波利斯遗址'],
         location: { lat: 30, lon: 53 } },
       { year: -522, era: '阿契美尼德', title: '大流士一世',
@@ -217,6 +220,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -3500, era: '乌鲁克', title: '城市革命',
         description: '苏美尔人在两河流域建立乌鲁克等城市，发明楔形文字、车轮、灌溉农业。',
+        image: '/generated/mesopotamia_001.jpg',
         artifacts: ['乌鲁克石膏瓶'],
         location: { lat: 31, lon: 45 } },
       { year: -2334, era: '阿卡德', title: '萨尔贡帝国',
@@ -265,6 +269,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -10000, era: '绳文', title: '绳文文化',
         description: '日本进入新石器时代，绳文人以狩猎采集为生，留下精美的绳纹土器与土偶。',
+        image: '/generated/japan_001.jpg',
         artifacts: ['遮光器土偶'] },
       { year: -660, era: '神话', title: '神武天皇',
         description: '相传神武天皇于公元前 660 年建国，日本天皇制延续至今，是世界最长的王朝世系。',
@@ -315,6 +320,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 200, era: '扶南', title: '扶南王国',
         description: '湄公河三角洲的扶南王国成为东南亚最早的海港国，连接中印贸易。',
+        image: '/generated/southeastasia_001.jpg',
         location: { lat: 11, lon: 105 } },
       { year: 802, era: '高棉', title: '吴哥王朝',
         description: '阇耶跋摩二世建立高棉帝国，苏耶跋摩二世修建吴哥窟，成为世界最大宗教建筑。',
@@ -363,6 +369,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -800, era: '古风', title: '城邦兴起',
         description: '希腊城邦如雅典、斯巴达、科林斯兴起，开启独特的城邦政治传统。',
+        image: '/generated/greece_001.jpg',
         location: { lat: 38, lon: 24 } },
       { year: -776, era: '古风', title: '首届奥运会',
         description: '首届古代奥运会在奥林匹亚举行，此后每四年一届，延续近千年。',
@@ -408,6 +415,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -753, era: '王政', title: '罗马建城',
         description: '相传罗慕路斯与雷穆斯于公元前 753 年建立罗马城，开启罗马千年史。',
+        image: '/generated/rome_001.jpg',
         location: { lat: 42, lon: 12 } },
       { year: -509, era: '共和', title: '罗马共和国',
         description: '驱逐王政，建立共和国，由执政官、元老院、公民大会共治，逐步统一意大利。' },
@@ -459,6 +467,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -3000, era: '新石器', title: '巨石阵',
         description: '索尔兹伯里平原的巨石阵开始建造，是欧洲最重要的史前天文与宗教遗址。',
+        image: '/generated/britain_001.jpg',
         artifacts: ['巨石阵'],
         location: { lat: 51, lon: -2 } },
       { year: 43, era: '罗马', title: '克劳狄征服',
@@ -514,6 +523,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -52, era: '高卢', title: '阿莱西亚之战',
         description: '凯撒击败高卢首领维钦托利，高卢并入罗马，开启拉丁化的法兰西文明。',
+        image: '/generated/france_001.jpg',
         location: { lat: 47, lon: 4 } },
       { year: 481, era: '法兰克', title: '墨洛温王朝',
         description: '克洛维建立法兰克王国，皈依天主教，奠定法国天主教传统。' },
@@ -564,6 +574,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 862, era: '基辅罗斯', title: '留里克建国',
         description: '维京人留里克建立诺夫哥罗德，开启基辅罗斯王朝，俄罗斯国家之始。',
+        image: '/generated/russia_001.jpg',
         location: { lat: 58, lon: 31 } },
       { year: 988, era: '基辅罗斯', title: '弗拉基米尔受洗',
         description: '弗拉基米尔大公接受东正教，俄罗斯从此与拜占庭文化圈结缘。' },
@@ -617,6 +628,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -3100, era: '早王朝', title: '上下埃及统一',
         description: '美尼斯统一上下埃及，建立第一王朝，开启法老时代。尼罗河滋养了人类最悠久的文明之一。',
+        image: '/generated/egypt_001.jpg',
         location: { lat: 26, lon: 32 } },
       { year: -2560, era: '古王国', title: '胡夫金字塔',
         description: '胡夫法老修建吉萨大金字塔，高 146 米，是世界七大奇迹唯一存世者。',
@@ -670,6 +682,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 300, era: '加纳', title: '加纳帝国',
         description: '加纳帝国控制撒哈拉黄金与盐的贸易，被誉为「黄金之国」。',
+        image: '/generated/mali_001.jpg',
         location: { lat: 15, lon: -8 } },
       { year: 1235, era: '马里', title: '松迪亚塔',
         description: '松迪亚塔建立马里帝国，其继承者曼萨·穆萨赴麦加朝觐，挥金如土震惊开罗。' },
@@ -709,6 +722,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 100, era: '阿克苏姆', title: '阿克苏姆王国',
         description: '阿克苏姆王国崛起于红海贸易，铸造非洲最早的货币，立巨型方尖碑。',
+        image: '/generated/ethiopia_001.jpg',
         location: { lat: 14, lon: 39 } },
       { year: 330, era: '阿克苏姆', title: '皈依基督教',
         description: '埃扎纳国王皈依基督教，埃塞俄比亚成为世界上最早的基督教国家之一。' },
@@ -749,6 +763,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 200, era: '绍纳', title: '绍纳先民',
         description: '班图语系绍纳人祖先从中非迁入津巴布韦高原，畜牧与铁器冶炼为文明奠基。',
+        image: '/generated/zimbabwe_001.jpg',
         location: { lat: -20, lon: 30 } },
       { year: 1100, era: '古典', title: '大津巴布韦',
         description: '绍纳人在马斯温戈附近建立「大津巴布韦」（Mutapa），意为「石头房子」，成为南部非洲商贸中心。',
@@ -796,6 +811,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 1180, era: '起源', title: '约鲁巴祖先',
         description: '约鲁巴人祖先在今尼日利亚西南部建立伊费（Ile-Ife）城邦，孕育贝宁文明的母体。',
+        image: '/generated/benin_001.jpg',
         location: { lat: 7, lon: 4 } },
       { year: 1440, era: '鼎盛', title: '贝宁王国',
         description: '奥巴（Oba）埃瓦雷大帝统一贝宁，建立中央集权王国，定都贝宁城，统治今尼日利亚南部。',
@@ -845,6 +861,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -1000, era: '前古典', title: '前古典期',
         description: '玛雅人在尤卡坦与危地马拉高地建立早期村落，发展玉米农业。',
+        image: '/generated/maya_001.jpg',
         location: { lat: 17, lon: -89 } },
       { year: -36, era: '前古典', title: '奥尔梅克继承者',
         description: '玛雅人从奥尔梅克文明继承美洲豹崇拜、跪像传统，开始构筑小型神庙。' },
@@ -881,6 +898,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 1325, era: '建国', title: '特诺奇蒂特兰',
         description: '阿兹特克人于特斯科科湖中建立特诺奇蒂特兰，传说见「鹰啄蛇立仙人掌」处建城。',
+        image: '/generated/aztec_001.jpg',
         location: { lat: 19, lon: -99 } },
       { year: 1428, era: '同盟', title: '三国同盟',
         description: '特诺奇蒂特兰、特斯科科、特拉科潘结成同盟，建立阿兹特克帝国，称霸中美洲。' },
@@ -923,6 +941,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 1200, era: '前印加', title: '蒂亚瓦纳科',
         description: '的的喀喀湖畔的蒂亚瓦纳科文明繁荣，建太阳门，为后来印加文明奠基。',
+        image: '/generated/inca_001.jpg',
         location: { lat: -16, lon: -68 } },
       { year: 1438, era: '建国', title: '帕查库蒂',
         description: '帕查库蒂击败昌卡人，开启印加扩张，建立塔万廷苏尤（印加帝国）。',
@@ -971,6 +990,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -8000, era: '史前', title: '亚马逊先民',
         description: '亚马逊雨林中的原始居民开垦出"地球之肺"中的黑色土壤（terra preta），形成独特农耕文明。',
+        image: '/generated/brazil_001.jpg',
         location: { lat: -3, lon: -60 } },
       { year: 1500, era: '殖民', title: '佩德罗·阿尔瓦雷斯',
         description: '葡萄牙航海家佩德罗·阿尔瓦雷斯·卡布拉尔抵达巴西海岸，葡属巴西殖民地建立。',
@@ -1025,6 +1045,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -11000, era: '史前', title: '克洛维斯先民',
         description: '阿根廷潘帕斯草原出现克洛维斯猎人，使用克洛维斯尖状器狩猎乳齿象、原驼。',
+        image: '/generated/argentina_001.jpg',
         location: { lat: -34, lon: -64 } },
       { year: -1480, era: '前印加', title: '迪亚吉特人',
         description: '迪亚吉特人（Diaguita）等游牧部落生活在阿根廷西北部，灌溉农业与彩陶文化发达。',
@@ -1076,6 +1097,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 1607, era: '殖民', title: '詹姆斯敦',
         description: '英国人在弗吉尼亚建立第一个永久殖民地詹姆斯敦，开启英属北美殖民史。',
+        image: '/generated/usa_001.jpg',
         location: { lat: 37, lon: -77 } },
       { year: 1620, era: '殖民', title: '五月花号',
         description: '清教徒乘五月花号抵达普利茅斯，签署《五月花号公约》，奠定美国自治传统。',
@@ -1131,6 +1153,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -10000, era: '史前', title: '冰原退去',
         description: '末次冰期冰川退去，加拿大北部出现无冰走廊（Ice-Free Corridor），原住民祖先自亚洲经白令陆桥迁入。',
+        image: '/generated/canada_001.jpg',
         location: { lat: 60, lon: -110 } },
       { year: -3000, era: '史前', title: '多里安文化',
         description: '加拿大北极地区出现多里安文化（Dorset），以海象牙雕刻小像闻名，是因纽特文化前驱。',
@@ -1188,6 +1211,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: 1280, era: '迁徙', title: '登陆奥特亚罗瓦',
         description: '东波利尼西亚航海者循星象、洋流抵达新西兰，自称「毛利」，将这片土地命名为「奥特亚罗瓦」（长白云之乡）。',
+        image: '/generated/maori_001.jpg',
         location: { lat: -41, lon: 174 } },
       { year: 1350, era: '古典', title: '部落社会',
         description: '毛利形成数十个 iwi（部落），以 marae（议事堂）为中心，发展木雕、绿石工艺、哈卡战舞。' },
@@ -1234,6 +1258,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -1500, era: '拉皮塔', title: '拉皮塔陶工',
         description: '拉皮塔文化从俾斯麦群岛向太平洋扩张，带印纹陶器与芋头、薯蓣、猪、鸡，奠定波利尼西亚文化基础。',
+        image: '/generated/polynesian_001.jpg',
         artifacts: ['拉皮塔印纹陶器'],
         location: { lat: -4, lon: 152 } },
       { year: 300, era: '扩张', title: '发现夏威夷',
@@ -1283,6 +1308,7 @@ export const COUNTRIES: CountryHistory[] = [
     timeline: [
       { year: -50000, era: '史前', title: '人类最初定居',
         description: '现代遗传学与考古学证据显示，新几内亚岛与澳大利亚在 5 万年前被同一波现代人从亚洲南部殖民。',
+        image: '/generated/papua_001.jpg',
         location: { lat: -6, lon: 147 } },
       { year: -10000, era: '史前', title: '高原农业起源',
         description: '考古证据显示新几内亚高地（Higlands）于 1 万年前独立发展出甘蔗、香蕉、芋头种植，是世界七大农业起源地之一。',
