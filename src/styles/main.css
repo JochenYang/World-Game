@@ -270,8 +270,8 @@ body {
   gap: 1.5rem;
   width: max-content;
   will-change: transform;
-  /* 8 张卡 × 560px + 7 × 24px gap ≈ 4648px → 18s → ~258px/s（明显从右向左流动） */
-  animation: historyCardsScroll 18s linear infinite;
+  /* 21 张卡 × 560px + 20 × 24px gap ≈ 12240px → 45s → ~136px/s（从右向左流动） */
+  animation: historyCardsScroll 45s linear infinite;
 }
 @keyframes historyCardsScroll {
   /* 从右向左：起点 0%（最左那张卡在屏左），终点 -50%（最左那张卡移到屏左外，

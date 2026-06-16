@@ -22,14 +22,27 @@ interface BestiaryCard {
 }
 
 const CARDS: BestiaryCard[] = [
-  { id: 'hadean',     title: '冥古宙·岩浆海',     era: 'Hadean',     stamp: '冥', image: '/bestiary/hadean_001.jpg' },
-  { id: 'archean',    title: '太古宙·叠层石',     era: 'Archean',    stamp: '太', image: '/bestiary/archean_001.jpg' },
-  { id: 'cambrian',   title: '寒武纪·生命大爆发', era: 'Cambrian',   stamp: '寒', image: '/bestiary/cambrian_001.jpg' },
-  { id: 'jurassic',   title: '侏罗纪·恐龙时代',   era: 'Jurassic',   stamp: '侏', image: '/bestiary/jurassic_001.jpg' },
-  { id: 'cretaceous', title: '白垩纪·翼龙翱翔',   era: 'Cretaceous', stamp: '白', image: '/bestiary/cretaceous_001.jpg' },
-  { id: 'iceage',     title: '冰河时代·猛犸',     era: 'Ice Age',    stamp: '冰', image: '/bestiary/iceage_001.jpg' },
-  { id: 'sapiens',    title: '智人·篝火初燃',     era: 'Sapiens',    stamp: '人', image: '/bestiary/sapiens_001.jpg' },
-  { id: 'pyramid',    title: '古文明·金字塔',     era: 'Civilization', stamp: '文', image: '/bestiary/pyramid_001.jpg' }
+  { id: 'hadean',              title: '冥古宙·岩浆海',     era: 'Hadean',        stamp: '冥', image: '/bestiary/hadean_001.jpg' },
+  { id: 'archean',             title: '太古宙·叠层石',     era: 'Archean',       stamp: '太', image: '/bestiary/archean_001.jpg' },
+  { id: 'proterozoic_oxygen',  title: '元古宙·大氧化',     era: 'Proterozoic',   stamp: '元', image: '/bestiary/proterozoic_oxygen_001.jpg' },
+  { id: 'snowball',            title: '雪球地球',         era: 'Cryogenian',    stamp: '雪', image: '/bestiary/snowball_001.jpg' },
+  { id: 'cambrian',            title: '寒武纪·生命大爆发', era: 'Cambrian',      stamp: '寒', image: '/bestiary/cambrian_001.jpg' },
+  { id: 'devonian',            title: '泥盆纪·鱼类时代',   era: 'Devonian',      stamp: '泥', image: '/bestiary/devonian_001.jpg' },
+  { id: 'carboniferous',       title: '石炭纪·巨型昆虫',   era: 'Carboniferous', stamp: '炭', image: '/bestiary/carboniferous_001.jpg' },
+  { id: 'permian',             title: '二叠纪·盘古大陆',   era: 'Permian',       stamp: '二', image: '/bestiary/red_desert_001.jpg' },
+  { id: 'triassic',            title: '三叠纪·恐龙黎明',   era: 'Triassic',      stamp: '三', image: '/bestiary/triassic_001.jpg' },
+  { id: 'jurassic',            title: '侏罗纪·恐龙时代',   era: 'Jurassic',      stamp: '侏', image: '/bestiary/jurassic_001.jpg' },
+  { id: 'cretaceous',          title: '白垩纪·翼龙翱翔',   era: 'Cretaceous',    stamp: '白', image: '/bestiary/cretaceous_001.jpg' },
+  { id: 'paleogene',           title: '古近纪·哺乳兴起',   era: 'Paleogene',     stamp: '近', image: '/bestiary/cenozoic_001.jpg' },
+  { id: 'iceage',              title: '冰河时代·猛犸',     era: 'Ice Age',       stamp: '猛', image: '/bestiary/iceage_001.jpg' },
+  { id: 'sapiens',             title: '智人·篝火初燃',     era: 'Sapiens',       stamp: '人', image: '/bestiary/sapiens_001.jpg' },
+  { id: 'out_of_africa',       title: '智人·走出非洲',     era: 'Out of Africa', stamp: '迁', image: '/bestiary/out_of_africa_001.jpg' },
+  { id: 'neolithic',           title: '新石器·农业起源',   era: 'Neolithic',     stamp: '农', image: '/bestiary/farming_001.jpg' },
+  { id: 'pyramid',             title: '古文明·金字塔',     era: 'Civilization',  stamp: '文', image: '/bestiary/pyramid_001.jpg' },
+  { id: 'rome',                title: '古罗马·帝国崛起',   era: 'Rome',          stamp: '罗', image: '/bestiary/rome_001.jpg' },
+  { id: 'medieval',            title: '中世纪·城堡骑士',   era: 'Medieval',      stamp: '骑', image: '/bestiary/medieval_001.jpg' },
+  { id: 'industrial',          title: '工业革命·蒸汽时代', era: 'Industrial',    stamp: '工', image: '/bestiary/industrial_001.jpg' },
+  { id: 'modern_city',         title: '现代·都市灯火',     era: 'Modern',        stamp: '今', image: '/bestiary/modern_city_001.jpg' }
 ];
 
 function escapeHtml(s: string): string {
