@@ -11,10 +11,12 @@ import { Globe } from './core/Globe';
 import { CameraController } from './core/Camera';
 import { Picker } from './core/Picker';
 import { PostFX } from './core/PostFX';
+import { MusicManager } from './core/MusicManager';
 import { TitleScreen } from './ui/TitleScreen';
 import { ScrollPanel } from './ui/ScrollPanel';
 import { RegionTooltip, RegionHud } from './ui/Tooltip';
 import { HistoryCardsBg } from './ui/HistoryCardsBg';
+import { MusicToggle } from './ui/MusicToggle';
 import { CONTINENTS } from './data/continents';
 import type { ContinentId } from './data/continents';
 import type { ContentView } from './data/types';
@@ -24,12 +26,7 @@ async function bootstrap() {
   if (!canvas) throw new Error('Canvas not found');
 
   // 1. 渲染器
-  const { renderer, label } = await createRenderer(canvas);
-  const modeEl = document.getElementById('render-mode');
-  if (modeEl) {
-    modeEl.textContent = label;
-    if (label.includes('WebGL')) modeEl.classList.add('is-fallback');
-  }
+  const { renderer } = await createRenderer(canvas);
 
   // 2. 场景 & 相机
   //    scene.background 留空（null），让 canvas 透明区域透出下层 DOM（#stage 背景 + history-cards 卡片）。
@@ -95,6 +92,14 @@ async function bootstrap() {
   const hud = new RegionHud();
   const historyCardsBg = new HistoryCardsBg();
 
+  // 音乐管理器（预加载 4 首，封面默认播放）
+  const music = new MusicManager();
+  const musicHost = document.getElementById('music-toggle-host');
+  if (musicHost) {
+    new MusicToggle(music, musicHost);
+  }
+  music.switchTo('cover');
+
   // 启动
   titleScreen.setOnStart(() => {
     // 进入主舞台时让相机略微拉近
@@ -103,6 +108,7 @@ async function bootstrap() {
     globe.setAutoRotate(true);
     // 启动「地球生命史」长卷背景（从右向左循环）
     historyCardsBg.start();
+    // 启卷后保持封面 cover 不变（默认音乐；只有主动点大陆才切换）
   });
 
   // 用户操作时暂停自转 + 操作结束后 2.5s 恢复自转
@@ -130,6 +136,8 @@ async function bootstrap() {
       clearTimeout(resumeAutoRotateTimer);
       resumeAutoRotateTimer = null;
     }
+    // 合卷后回到默认音乐（封面 cover）
+    music.switchTo('cover');
     // 仅在大陆溯源/列国史视图下复位相机；编年史视图保持自转
     if (currentView !== 'chronicle') {
       controller.resetView(1.2);
@@ -215,9 +223,10 @@ async function bootstrap() {
     }
 
     if (currentView === 'chronicle') {
-      // 编年史视图：点击大陆仍聚焦，但不切换内容（保持全球编年）
+      // 编年史视图：点击大陆仍聚焦+切该大洲音乐，但不切换卷轴内容（保持全球编年）
       globe.setAutoRotate(false);
       controller.focusTo(c.centerLat, c.centerLon, 5, 1.6);
+      music.switchTo(id);
       return;
     }
 
@@ -226,6 +235,8 @@ async function bootstrap() {
     controller.focusTo(c.centerLat, c.centerLon, 5, 1.6);
     hud.set(id);
     tooltip.hide();
+    // 切换为该大洲/极区的专属音乐
+    music.switchTo(id);
 
     if (currentView === 'country') {
       scrollPanel.openContinentCountries(id);

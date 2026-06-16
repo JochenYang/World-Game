@@ -5,6 +5,7 @@
 export class TitleScreen {
   private el: HTMLElement;
   private onStart: (() => void) | null = null;
+  private started = false;
 
   constructor() {
     this.el = document.getElementById('title-screen')!;
@@ -16,7 +17,12 @@ export class TitleScreen {
     this.onStart = cb;
   }
 
+  isStarted(): boolean {
+    return this.started;
+  }
+
   private start() {
+    this.started = true;
     this.el.classList.add('is-hidden');
     document.getElementById('stage')?.classList.add('is-active');
     document.getElementById('stage')?.setAttribute('aria-hidden', 'false');

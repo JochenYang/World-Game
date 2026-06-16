@@ -64,6 +64,8 @@
               <button class="view-switcher__btn" data-view="chronicle" type="button">地球编年</button>
               <button class="view-switcher__btn" data-view="country" type="button">列国史</button>
             </nav>
+            <!-- 音乐开关（由 MusicToggle 注入） -->
+            <div id="music-toggle-host" class="hud-top__music"></div>
             <div id="hud-region" class="hud-top__region">点击大陆以观其详</div>
           </div>
         </header>
@@ -95,7 +97,6 @@
         <!-- 底部水印 -->
         <footer class="hud-bottom">
           <span>水墨地球 · WebGPU 渲染</span>
-          <span id="render-mode">检测中…</span>
         </footer>
       </main>
     </div>

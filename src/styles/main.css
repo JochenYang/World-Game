@@ -496,6 +496,89 @@ body {
 }
 
 /* =========================================================
+   音乐开关（印章）
+   ========================================================= */
+.hud-top__music {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.music-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 40px;
+  padding: 0;
+  background: var(--color-zhuhong);
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  border-radius: 4px;
+  box-shadow: var(--shadow-seal);
+  cursor: pointer;
+  transform: rotate(-3deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.3s ease;
+  font-family: var(--font-brush);
+  color: var(--color-xuanzhi);
+}
+
+.music-toggle:hover {
+  transform: rotate(-3deg) scale(1.06);
+  box-shadow: 0 4px 10px rgba(226, 35, 26, 0.45);
+}
+
+.music-toggle:active {
+  transform: rotate(-3deg) scale(0.96);
+}
+
+.music-toggle:focus-visible {
+  outline: 2px solid var(--color-xiang);
+  outline-offset: 3px;
+}
+
+.music-toggle__label {
+  font-size: 16px;
+  letter-spacing: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 静音态：朱红变墨色，弱化存在感 */
+.music-toggle.is-muted {
+  background: rgba(44, 54, 57, 0.85);
+  border-color: rgba(176, 168, 154, 0.4);
+  opacity: 0.7;
+}
+
+.music-toggle.is-muted:hover {
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* 播放中：印章外圈轻微律动光晕（暗示音乐正在流） */
+.music-toggle:not(.is-muted)::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(236, 175, 30, 0.35);
+  border-radius: 6px;
+  animation: music-pulse 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes music-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle:not(.is-muted)::after {
+    animation: none;
+  }
+}
+
+/* =========================================================
    大陆悬停提示
    ========================================================= */
 .region-tooltip {
@@ -979,15 +1062,6 @@ body {
   letter-spacing: 0.2em;
   pointer-events: none;
   background: linear-gradient(0deg, rgba(12, 15, 16, 0.6) 0%, transparent 100%);
-}
-
-#render-mode {
-  color: var(--color-xiang);
-  font-family: var(--font-serif);
-}
-
-#render-mode.is-fallback {
-  color: var(--color-yan);
 }
 
 /* =========================================================
