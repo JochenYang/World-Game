@@ -13,6 +13,7 @@
  */
 
 import type { ContinentId } from './continents';
+import ARCTIC from './arctic';
 
 export interface OriginEvent {
   year: number;                 // 距今（负数 = 公元前）
@@ -528,7 +529,8 @@ export const CONTENT: Record<ContinentId, ContinentContent> = {
   northAmerica: NORTH_AMERICA,
   southAmerica: SOUTH_AMERICA,
   oceania: OCEANIA,
-  antarctica: ANTARCTICA
+  antarctica: ANTARCTICA,
+  arctic: ARCTIC
 };
 
 export function getContent(id: ContinentId): ContinentContent | undefined {

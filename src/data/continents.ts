@@ -9,7 +9,8 @@ export type ContinentId =
   | 'northAmerica'
   | 'southAmerica'
   | 'oceania'
-  | 'antarctica';
+  | 'antarctica'
+  | 'arctic';
 
 export interface ContinentMeta {
   id: ContinentId;
@@ -29,7 +30,14 @@ export const CONTINENTS: ContinentMeta[] = [
   { id: 'northAmerica', name: '北美洲',   nameEn: 'North America', stamp: '北', centerLat:  45, centerLon: -100, visibility: 1.0 },
   { id: 'southAmerica', name: '南美洲',   nameEn: 'South America', stamp: '南', centerLat: -15, centerLon:  -60, visibility: 1.0 },
   { id: 'oceania',      name: '大洋洲',   nameEn: 'Oceania',      stamp: '洋', centerLat: -25, centerLon:  135, visibility: 1.0 },
-  { id: 'antarctica',   name: '南极洲',   nameEn: 'Antarctica',   stamp: '极', centerLat: -82, centerLon:    0, visibility: 0.6 }
+  // 南极洲：相机/拾取中心定在南极圈外缘 -72°，避免极点纹理畸变；
+  // visibility 调低，相机聚焦时会自动拉远，让整个南极洲入画
+  { id: 'antarctica',   name: '南极洲',   nameEn: 'Antarctica',   stamp: '极', centerLat: -72, centerLon:    0, visibility: 0.6 },
+  // 北极：第 8 区，作为可拾取区域（不再仅做装饰文字）。
+  // centerLat=72 同样避开 |lat|>75° 的横向纹理挤压；
+  // visibility 0.6 与南极洲对称，相机聚焦时自动拉远。
+  // stamp 选「凛」字避免与北美洲「北」、南极洲「极」冲突。
+  { id: 'arctic',       name: '北极',     nameEn: 'Arctic',       stamp: '凛', centerLat:  72, centerLon:    0, visibility: 0.6 }
 ];
 
 export function getContinent(id: ContinentId): ContinentMeta | undefined {

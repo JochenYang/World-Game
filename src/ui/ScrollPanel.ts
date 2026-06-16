@@ -189,7 +189,8 @@ export class ScrollPanel {
     this.subtitleEl.textContent = continent.nameEn;
     this.stampEl.textContent = continent.stamp;
     this.overviewEl.textContent = content.overview;
-    this.setDivider('史前纪要');
+    // 第 8 区北极专属文案
+    this.setDivider(continentId === 'arctic' ? '极地纪要' : '史前纪要');
     this.setCloseLabel('合卷');
 
     const sorted = [...content.timeline].sort((a, b) => a.year - b.year);

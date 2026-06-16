@@ -31,13 +31,14 @@ export async function createRenderer(canvas: HTMLCanvasElement): Promise<Rendere
       const renderer = new Ctor({
         canvas,
         antialias: true,
-        alpha: false,
+        // 关键：alpha: true 让 canvas 圆形外透明，背景卡片层可以透出
+        alpha: true,
         powerPreference: 'high-performance'
       });
       await renderer.init();
       const r = renderer as unknown as THREE.WebGLRenderer;
       r.setPixelRatio?.(Math.min(window.devicePixelRatio, 2));
-      r.setClearColor?.(new THREE.Color(0x0c0f10), 1);
+      r.setClearColor?.(new THREE.Color(0x0c0f10), 0);
       console.info('[Renderer] WebGPU 已启用');
       return { renderer, mode: 'webgpu', label: 'WebGPU 渲染' };
     } catch (err) {
@@ -48,11 +49,12 @@ export async function createRenderer(canvas: HTMLCanvasElement): Promise<Rendere
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: false,
+    // 关键：alpha: true 让 canvas 圆形外透明，背景卡片层可以透出
+    alpha: true,
     powerPreference: 'high-performance'
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(new THREE.Color(0x0c0f10), 1);
+  renderer.setClearColor(new THREE.Color(0x0c0f10), 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
   renderer.outputColorSpace = THREE.SRGBColorSpace;

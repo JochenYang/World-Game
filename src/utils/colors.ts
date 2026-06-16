@@ -18,7 +18,8 @@ export const COLORS = {
   northAmerica: 0x789262,   // 竹青
   southAmerica: 0xb23c4d,   // 胭脂
   oceania: 0x3b5254,        // 黛青
-  antarctica: 0xd6ecf0      // 月白
+  antarctica: 0xd6ecf0,     // 月白
+  arctic: 0x9cc8d6          // 冰青 - 第 8 区（北极）
 } as const;
 
 export const CONTINENT_HIGHLIGHT = {
@@ -28,11 +29,15 @@ export const CONTINENT_HIGHLIGHT = {
   northAmerica: { r: 0.471, g: 0.572, b: 0.384 },
   southAmerica: { r: 0.698, g: 0.235, b: 0.302 },
   oceania: { r: 0.231, g: 0.322, b: 0.329 },
-  antarctica: { r: 0.839, g: 0.925, b: 0.941 }
+  antarctica: { r: 0.839, g: 0.925, b: 0.941 },
+  arctic: { r: 0.612, g: 0.784, b: 0.839 }  // 冰青
 };
 
 /**
  * 大陆 → 隐藏 ID 纹理的 RGB（每洲一色，精准拾取）
+ *
+ * 注意：与 Globe.ts 的 continentColors 必须完全一致（值类型 [0-255]）；
+ * 颜色之间欧氏距离应远超 picker 阈值 60，避免误判。
  */
 export const REGION_ID_COLORS: Record<string, { r: number; g: number; b: number }> = {
   asia: { r: 226, g: 35, b: 26 },          // 朱红
@@ -41,5 +46,6 @@ export const REGION_ID_COLORS: Record<string, { r: number; g: number; b: number 
   northAmerica: { r: 120, g: 146, b: 98 },  // 竹青
   southAmerica: { r: 178, g: 60, b: 77 },   // 胭脂
   oceania: { r: 59, g: 82, b: 84 },         // 黛青
-  antarctica: { r: 214, g: 236, b: 240 }    // 月白
+  antarctica: { r: 214, g: 236, b: 240 },   // 月白
+  arctic: { r: 156, g: 200, b: 214 }        // 冰青 - 第 8 区
 };
