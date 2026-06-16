@@ -42,6 +42,13 @@
 
       <!-- 主舞台 -->
       <main id="stage" class="stage" aria-hidden="true">
+        <!-- 历史生物长卷背景：放在 canvas 之前，3D 地球会天然遮住卡片（地球放大/缩小自动适配） -->
+        <div id="history-cards" class="history-cards" aria-hidden="true">
+          <div class="history-cards__track" id="history-cards-track">
+            <!-- 8 + 8 = 16 张卡片（重复一遍实现无缝循环），由 JS 注入 -->
+          </div>
+        </div>
+
         <canvas id="globe-canvas"></canvas>
 
         <!-- 顶栏 -->

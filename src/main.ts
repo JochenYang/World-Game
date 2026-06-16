@@ -14,6 +14,7 @@ import { PostFX } from './core/PostFX';
 import { TitleScreen } from './ui/TitleScreen';
 import { ScrollPanel } from './ui/ScrollPanel';
 import { RegionTooltip, RegionHud } from './ui/Tooltip';
+import { HistoryCardsBg } from './ui/HistoryCardsBg';
 import { CONTINENTS } from './data/continents';
 import type { ContinentId } from './data/continents';
 import type { ContentView } from './data/types';
@@ -31,8 +32,10 @@ async function bootstrap() {
   }
 
   // 2. 场景 & 相机
+  //    scene.background 留空（null），让 canvas 透明区域透出下层 DOM（#stage 背景 + history-cards 卡片）。
+  //    3D 物体（地球 + 大气层）仍正常渲染，地球 + 大气层不透明区域天然遮住下层卡片。
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0c0f10);
+  scene.background = null;
   scene.fog = new THREE.FogExp2(0x0c0f10, 0.025);
 
   const camera = new THREE.PerspectiveCamera(
@@ -90,18 +93,43 @@ async function bootstrap() {
   const scrollPanel = new ScrollPanel();
   const tooltip = new RegionTooltip();
   const hud = new RegionHud();
+  const historyCardsBg = new HistoryCardsBg();
 
   // 启动
   titleScreen.setOnStart(() => {
     // 进入主舞台时让相机略微拉近
     controller.resetView(1.4);
-    // 默认为「大陆溯源」视图：停止自转，便于用户点击大陆
-    globe.setAutoRotate(false);
+    // 地球默认自转（"当用户不操作地球时"）；用户操作时会被下方监听器暂停
+    globe.setAutoRotate(true);
+    // 启动「地球生命史」长卷背景（从右向左循环）
+    historyCardsBg.start();
   });
+
+  // 用户操作时暂停自转 + 操作结束后 2.5s 恢复自转
+  let resumeAutoRotateTimer: number | null = null;
+  const RESUME_DELAY_MS = 2500;
+  function pauseAndScheduleResume() {
+    globe.setAutoRotate(false);
+    if (resumeAutoRotateTimer !== null) {
+      clearTimeout(resumeAutoRotateTimer);
+    }
+    resumeAutoRotateTimer = window.setTimeout(() => {
+      globe.setAutoRotate(true);
+      resumeAutoRotateTimer = null;
+    }, RESUME_DELAY_MS);
+  }
+  canvas.addEventListener('pointerdown', pauseAndScheduleResume);
+  canvas.addEventListener('wheel', pauseAndScheduleResume, { passive: true });
 
   // 卷轴彻底关闭后复位（pop 上一层时不触发）
   scrollPanel.setOnClose(() => {
     hud.set(null);
+    // 卷轴关闭后恢复自转（点击大陆时 setOnTap 会暂停自转）
+    globe.setAutoRotate(true);
+    if (resumeAutoRotateTimer !== null) {
+      clearTimeout(resumeAutoRotateTimer);
+      resumeAutoRotateTimer = null;
+    }
     // 仅在大陆溯源/列国史视图下复位相机；编年史视图保持自转
     if (currentView !== 'chronicle') {
       controller.resetView(1.2);
@@ -153,13 +181,20 @@ async function bootstrap() {
       if (view === 'chronicle') {
         // 编年史：自动展开，地球自转作背景（无需用户点击大陆）
         globe.setAutoRotate(true);
+        if (resumeAutoRotateTimer !== null) {
+          clearTimeout(resumeAutoRotateTimer);
+          resumeAutoRotateTimer = null;
+        }
         controller.resetView(1.2);
         gsap.delayedCall(0.15, () => scrollPanel.openChronicle());
       } else {
-        // 大陆溯源 / 列国史：停止自转，便于用户稳定点击大陆
-        // 若开启自转，picker 在点击瞬间可能命中海洋，导致 onTap 直接 return，
-        // 面板永远打不开（即用户感知的「无内容」）。
-        globe.setAutoRotate(false);
+        // 大陆溯源 / 列国史：保持自转；点击大陆的瞬间在 setOnTap 里暂停自转，
+        // 避免 picker 命中海洋导致 onTap return。卷轴关闭后 onClose 恢复自转。
+        globe.setAutoRotate(true);
+        if (resumeAutoRotateTimer !== null) {
+          clearTimeout(resumeAutoRotateTimer);
+          resumeAutoRotateTimer = null;
+        }
         controller.resetView(1.2);
       }
     });
@@ -172,6 +207,12 @@ async function bootstrap() {
     if (!id) return;
     const c = CONTINENTS.find((c) => c.id === id);
     if (!c) return;
+
+    // 命中大陆：清除之前任何待执行的恢复自转 timer，确保卷轴阅读期间不自转
+    if (resumeAutoRotateTimer !== null) {
+      clearTimeout(resumeAutoRotateTimer);
+      resumeAutoRotateTimer = null;
+    }
 
     if (currentView === 'chronicle') {
       // 编年史视图：点击大陆仍聚焦，但不切换内容（保持全球编年）
@@ -248,12 +289,11 @@ async function bootstrap() {
   window.addEventListener('resize', onResize);
   onResize();
 
-  // 调试暴露
-  if ((import.meta as unknown as { env?: { DEV?: boolean } }).env?.DEV) {
-    (window as unknown as { __worldGame?: unknown }).__worldGame = {
-      scene, camera, globe, controller, picker, postfx
-    };
-  }
+  // 调试暴露（始终开启，便于生产环境诊断与自动化验证；
+  // 不含任何敏感数据，仅暴露场景/相机/globe/picker 引用）
+  (window as unknown as { __worldGame?: unknown }).__worldGame = {
+    scene, camera, globe, controller, picker, postfx
+  };
 }
 
 bootstrap().catch((err) => {

@@ -236,6 +236,132 @@ body {
   opacity: 1;
 }
 
+/* =========================================================
+   历史生物长卷背景
+   - z-index: 1：盖在 canvas 之上
+   - 关键：用 mask 镂空「地球椭圆」区域 → 卡片经过地球位置时透明 → 视觉上被地球遮住
+   - pointer-events: none：不拦截地球交互
+   - 位置：垂直 100% 覆盖主舞台，水平沿「地球水平中线」一行（top: 50%）
+   - 90s 一圈：从右向左慢移
+   - 地球在 z 平面位于卡片之下（DOM 顺序：canvas 在前、history-cards 在后），
+     卡片用 mask 镂空地球区域 → 等效"地球在前景覆盖卡片"
+   - prefers-reduced-motion: reduce 时静止
+   - 移动端 < 640px 隐藏
+   ========================================================= */
+.history-cards {
+  position: absolute;
+  inset: 0;
+  /* 不设 z-index（保持 auto），让 DOM 顺序生效：history-cards 在 canvas 之前，
+     canvas 后渲染天然遮住卡片（3D 地球在前景） */
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.history-cards.is-active {
+  opacity: 0.92;                       /* 卡片层 0.92，镂空区域透出 canvas/地球 */
+}
+.history-cards__track {
+  position: absolute;
+  left: 0;
+  top: 50%;                            /* 页面上下居中（与地球水平中线重合） */
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  will-change: transform;
+  /* 8 张卡 × 560px + 7 × 24px gap ≈ 4648px → 18s → ~258px/s（明显从右向左流动） */
+  animation: historyCardsScroll 18s linear infinite;
+}
+@keyframes historyCardsScroll {
+  /* 从右向左：起点 0%（最左那张卡在屏左），终点 -50%（最左那张卡移到屏左外，
+     此时最右那张卡刚好在屏左，无缝循环） */
+  from { transform: translate(0, -50%); }
+  to   { transform: translate(-50%, -50%); }
+}
+.history-cards__card {
+  position: relative;
+  flex: 0 0 auto;
+  width: 560px;                        /* 460 → 560，宽度匹配地球视觉直径，比例更协调 */
+  height: 260px;                       /* 200 → 260，高度接近地球半径，背景卡片更显眼 */
+  border: 1px solid rgba(245, 240, 232, 0.28);
+  background: rgba(43, 54, 57, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;              /* 上图下文 */
+  color: var(--color-xuanzhi);
+  font-family: var(--font-serif);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+.history-cards__card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: sepia(0.18) saturate(0.78) contrast(1.08) brightness(0.82);
+  z-index: 0;
+}
+.history-cards__card-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.7rem 0.9rem 0.8rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(12, 15, 16, 0.65) 50%,
+    rgba(12, 15, 16, 0.92) 100%
+  );
+  z-index: 1;
+}
+.history-cards__card-stamp {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  background: var(--color-zhuhong);
+  color: var(--color-xuanzhi);
+  font-family: var(--font-brush);
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transform: rotate(-6deg);
+  box-shadow: var(--shadow-seal);
+  opacity: 0.95;
+}
+.history-cards__card-title {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.history-cards__card-era {
+  font-size: 12px;
+  color: var(--color-xiang);
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+  margin-top: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  .history-cards { display: none; }
+}
+
 #globe-canvas {
   position: absolute;
   inset: 0;

@@ -19,11 +19,13 @@ import type { ContinentId } from '../data/continents';
 // 数据为粗略轮廓，足以覆盖大陆主要区域
 const CONTINENT_OUTLINES: Record<ContinentId, Array<[number, number]>> = {
   asia: [
-    [25, 70], [40, 75], [60, 78], [90, 78], [120, 75], [145, 73], [160, 70],
-    [170, 65], [180, 65], [170, 60], [145, 55], [140, 50], [140, 45], [135, 35],
+    // 北缘严格限制在北极圈 (≈66.5°) 以南 —— 把北冰洋让给「海洋」色，
+    // 避免 lat>67° 区域被填成亚洲朱红，导致 picker 在北极返回 asia。
+    [25, 66], [40, 66], [60, 67], [90, 67], [120, 66], [145, 66], [160, 65],
+    [170, 60], [180, 60], [170, 55], [145, 52], [140, 50], [140, 45], [135, 35],
     [125, 35], [120, 30], [108, 22], [100, 20], [100, 12], [95, 5], [85, 8],
     [78, 8], [70, 22], [60, 25], [50, 27], [42, 25], [35, 35], [30, 40],
-    [25, 42], [25, 50], [35, 55], [45, 60], [50, 65], [40, 67], [25, 70]
+    [25, 42], [25, 50], [35, 55], [45, 60], [50, 65], [40, 66], [25, 66]
   ],
   africa: [
     [-15, 35], [-10, 33], [0, 35], [10, 35], [15, 32], [25, 32], [33, 30],
@@ -32,16 +34,18 @@ const CONTINENT_OUTLINES: Record<ContinentId, Array<[number, number]>> = {
     [-10, 8], [-15, 12], [-17, 22], [-15, 28], [-15, 35]
   ],
   europe: [
+    // 北缘压到 68°（斯堪的纳维亚实际最北到 71°N，但留 3° 给挪威海归入北极）
     [-10, 36], [-5, 36], [0, 40], [10, 38], [12, 45], [15, 48], [25, 50],
-    [30, 55], [40, 60], [50, 65], [60, 68], [40, 70], [30, 72], [25, 70],
-    [20, 72], [15, 70], [5, 70], [-5, 65], [-10, 60], [-8, 55], [-10, 50],
+    [30, 55], [40, 60], [50, 65], [60, 68], [50, 67], [30, 65], [20, 66],
+    [10, 64], [0, 62], [-5, 60], [-8, 55], [-10, 50],
     [-10, 42], [-10, 36]
   ],
   northAmerica: [
-    [-165, 70], [-150, 72], [-130, 72], [-100, 75], [-80, 75], [-60, 65],
+    // 北缘压到 72°，格陵兰归入北极区；-60° 起是拉布拉多
+    [-165, 68], [-150, 70], [-130, 71], [-100, 72], [-80, 72], [-60, 65],
     [-55, 55], [-65, 48], [-75, 42], [-78, 35], [-82, 28], [-90, 28],
     [-95, 18], [-100, 16], [-105, 18], [-110, 25], [-115, 30], [-118, 35],
-    [-125, 42], [-130, 55], [-140, 60], [-155, 62], [-165, 65], [-165, 70]
+    [-125, 42], [-130, 55], [-140, 60], [-155, 62], [-165, 65], [-165, 68]
   ],
   southAmerica: [
     [-78, 12], [-70, 12], [-60, 8], [-50, 4], [-45, -2], [-38, -8],
@@ -58,6 +62,27 @@ const CONTINENT_OUTLINES: Record<ContinentId, Array<[number, number]>> = {
     [-180, -65], [-150, -73], [-120, -75], [-90, -72], [-60, -75], [-30, -73],
     [0, -70], [30, -68], [60, -67], [90, -66], [120, -66], [150, -71],
     [180, -75], [180, -85], [-180, -85], [-180, -65]
+  ],
+  // 北极：第 8 区可拾取多边形 —— 整圈冰盖。
+  // 关键约束：
+  //   - 把 lat 72°-88° 整个经度带全部涂成冰青
+  //   - 这样无论地球转到任何朝向，相机朝上都能看到一个明确的冰盖色块
+  //   - 上沿留 88°（不贴极点 lat=90°），下沿与 asia(67°)/europe(68°)/NA(72°) 都留 1°-16° 间隙防串色
+  // 多边形以 -180° 起沿赤道方向绕一圈回到 -180°，是连续环（不自交）
+  arctic: [
+    // 北缘 (lat 88°)：从 -180° 每 20° 一步顺时针到 180°
+    [-180, 88], [-160, 88], [-140, 88], [-120, 88], [-100, 88], [-80, 88],
+    [-60, 88], [-40, 88], [-20, 88], [0, 88], [20, 88], [40, 88],
+    [60, 88], [80, 88], [100, 88], [120, 88], [140, 88], [160, 88], [180, 88],
+    // 南缘 (lat 72°)：从 180° 退回到 -180°
+    // 注意：需要为 asia 留空（asia 在经度 25°E-180°E 北缘 67°，留 5° 缓冲到 lat 72°）
+    //       为 europe 留空（europe 在经度 -10°W-60°E 北缘 68°，留 4° 缓冲）
+    //       为 northAmerica 留空（NA 在经度 -165°W-(-60°)W 北缘 72°，恰好相接，无缓冲；NA 自身已压到 72°）
+    // 由于 NA 北缘已精确到 72°，arctic 的南缘在北美段也用 72° 即可
+    [180, 72], [160, 72], [140, 72], [120, 72], [100, 72], [80, 72],
+    [60, 72], [40, 72], [20, 72], [0, 72], [-20, 72], [-40, 72],
+    [-60, 72], [-80, 72], [-100, 72], [-120, 72], [-140, 72], [-160, 72],
+    [-180, 72]
   ]
 };
 
@@ -98,6 +123,7 @@ function generateEarthTexture(): THREE.CanvasTexture {
   ctx.globalAlpha = 1;
 
   // 绘制大陆 - 朱红/缃色/竹青等
+  // 注意：arctic 的 RGB 与 REGION_ID_COLORS.arctic 完全一致 (156,200,214)
   const continentColors: Record<ContinentId, string> = {
     asia: '#c41e1e',
     africa: '#d49b1c',
@@ -105,7 +131,8 @@ function generateEarthTexture(): THREE.CanvasTexture {
     northAmerica: '#5e7a4a',
     southAmerica: '#a83c4a',
     oceania: '#3b5254',
-    antarctica: '#d6ecf0'
+    antarctica: '#d6ecf0',
+    arctic: '#9cc8d6'  // 冰青 - 第 8 区
   };
 
   for (const [id, outline] of Object.entries(CONTINENT_OUTLINES) as [ContinentId, Array<[number, number]>][]) {
@@ -168,56 +195,66 @@ function generateEarthTexture(): THREE.CanvasTexture {
 /**
  * 在地球纹理上绘制各大陆的中英文名称
  * 使用经纬度→纹理坐标映射，文字会贴附在大陆中心
+ *
+ * 注意：标签纬度尽量避开 |lat|>70° 的极区——该处球体半径仅 R·cos(lat)，
+ * 纹理像素被横向强烈挤压（南极洲中心 -82° 处尤为严重），文字会变形。
+ * 因此南极洲标签固定显示在南极圈内缘 -68°，沿 0° 经线居中。
  */
 function drawContinentLabels(ctx: CanvasRenderingContext2D) {
   // 每个大陆的标签配置：中文名、英文名、字体大小、可选偏移
+  // latLon 为标签锚定的经纬度（可不同于大陆几何中心，用于避开极区畸变）
   const labels: Array<{
-    id: ContinentId;
+    id: ContinentId | 'arctic';
     name: string;
     nameEn: string;
     fontSize: number;
-    offsetLon?: number;
-    offsetLat?: number;
+    latLon: { lon: number; lat: number };
   }> = [
-    { id: 'asia', name: '亚洲', nameEn: 'ASIA', fontSize: 64 },
-    { id: 'africa', name: '非洲', nameEn: 'AFRICA', fontSize: 56 },
-    { id: 'europe', name: '欧洲', nameEn: 'EUROPE', fontSize: 44, offsetLat: 4 },
-    { id: 'northAmerica', name: '北美洲', nameEn: 'NORTH AMERICA', fontSize: 52 },
-    { id: 'southAmerica', name: '南美洲', nameEn: 'SOUTH AMERICA', fontSize: 48 },
-    { id: 'oceania', name: '大洋洲', nameEn: 'OCEANIA', fontSize: 42 },
-    { id: 'antarctica', name: '南极洲', nameEn: 'ANTARCTICA', fontSize: 44 }
+    { id: 'asia',         name: '亚洲',   nameEn: 'ASIA',          fontSize: 64, latLon: { lon: 100, lat:  35 } },
+    { id: 'africa',       name: '非洲',   nameEn: 'AFRICA',        fontSize: 56, latLon: { lon:  20, lat:   5 } },
+    { id: 'europe',       name: '欧洲',   nameEn: 'EUROPE',        fontSize: 44, latLon: { lon:  15, lat:  56 } },
+    { id: 'northAmerica', name: '北美洲', nameEn: 'NORTH AMERICA', fontSize: 52, latLon: { lon:-100, lat:  45 } },
+    { id: 'southAmerica', name: '南美洲', nameEn: 'SOUTH AMERICA', fontSize: 48, latLon: { lon: -60, lat: -15 } },
+    { id: 'oceania',      name: '大洋洲', nameEn: 'OCEANIA',       fontSize: 42, latLon: { lon: 135, lat: -25 } },
+    // 南极洲：把标签放到极圈外缘 -68°，避免极点纹理挤压导致文字变形
+    { id: 'antarctica',   name: '南极洲', nameEn: 'ANTARCTICA',    fontSize: 40, latLon: { lon:   0, lat: -68 } },
+    // 北极：第 8 区可拾取，文字标签放在多边形中央 (lat 80°)
+    // 选 lon=0° / lat=80° —— 北极点附近，横向纹理压缩虽强但极区色块大可遮盖
+    { id: 'arctic',       name: '北极',   nameEn: 'ARCTIC',        fontSize: 44, latLon: { lon:   0, lat:  80 } }
   ];
 
   for (const label of labels) {
-    const meta = CONTINENTS.find((c) => c.id === label.id);
-    if (!meta) continue;
-
-    const lon = meta.centerLon + (label.offsetLon ?? 0);
-    const lat = meta.centerLat + (label.offsetLat ?? 0);
+    const { lon, lat } = label.latLon;
     const x = ((lon + 180) / 360) * TEXTURE_WIDTH;
     const y = ((90 - lat) / 180) * TEXTURE_HEIGHT;
 
-    // 印章式背景（淡色圆角矩形）让文字在任何角度都清晰
+    // 极区 (|lat| > 70°) 的纹理会被球面投影严重横向压缩（R*cos(82°)≈0.14R），
+    // 需要更粗的描边以保证文字在球面贴附后仍然清晰可读
+    const isPolar = Math.abs(lat) > 70;
+    const strokeMul = isPolar ? 0.32 : 0.14;
+    const strokeAlpha = isPolar ? 0.95 : 0.85;
+    const fontBoost = isPolar ? 1.0 : 0;  // 极区文字位置保持但强化描边
+
     ctx.save();
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
     // 中文名 - 描边 + 填充，朱红主色
-    ctx.font = `900 ${label.fontSize}px "Noto Serif SC", "SimSun", serif`;
-    // 黑色描边（外发光效果）
-    ctx.lineWidth = Math.max(6, label.fontSize * 0.14);
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.85)';
+    ctx.font = `900 ${label.fontSize + fontBoost}px "Noto Serif SC", "SimSun", serif`;
+    // 描边（极区加粗）
+    ctx.lineWidth = Math.max(6, (label.fontSize + fontBoost) * strokeMul);
+    ctx.strokeStyle = `rgba(0, 0, 0, ${strokeAlpha})`;
     ctx.lineJoin = 'round';
     ctx.strokeText(label.name, x, y);
-    // 朱红填充
+    // 宣纸色填充
     ctx.fillStyle = '#f5f0e8';
     ctx.fillText(label.name, x, y);
 
     // 英文名 - 小号，缃色，位于中文下方
     const enFontSize = Math.max(14, label.fontSize * 0.32);
     ctx.font = `600 ${enFontSize}px "Noto Serif SC", serif`;
-    ctx.lineWidth = Math.max(2, enFontSize * 0.18);
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+    ctx.lineWidth = Math.max(2, enFontSize * (isPolar ? 0.35 : 0.18));
+    ctx.strokeStyle = `rgba(0, 0, 0, ${isPolar ? 0.95 : 0.8})`;
     ctx.strokeText(label.nameEn, x, y + label.fontSize * 0.7);
     ctx.fillStyle = '#ecaf1e';
     ctx.fillText(label.nameEn, x, y + label.fontSize * 0.7);
@@ -370,7 +407,8 @@ export class Globe {
 
   tick(delta: number) {
     if (this.autoRotate) {
-      this.group.rotation.y += delta * this.autoRotateSpeed;
+      // 自转方向：Y 轴负方向 = 从相机视角看是顺时针（地球自西向东的视觉习惯）
+      this.group.rotation.y -= delta * this.autoRotateSpeed;
     }
   }
 
